@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+
+const program = require("commander");
+const packageJSON = require("../package.json");
+const { start } = require("../lib/cli");
+
+program
+  .version(packageJSON.version)
+  .usage("[options] [one-off-commands...]")
+  .description(packageJSON.description)
+  .option(
+    "-c, --config <configs>",
+    "Specify one or multiple configuration files, separated by comma",
+    "dashflow.yml"
+  )
+  .option("-p, --port <port>", "Specify custom http port", null)
+  .on("--help", function() {
+    process.stdout.write(`
+Examples
+
+  by default dashflow reads from dashflow.yml in current folder
+
+  execute one off commands, similar to what Makefile allows us to do
+  $ dashflow lint
+  $ dashflow lint test
+
+  start a daemon which enables local dev workflow
+  $ dashflow
+
+  support multi config files, config files will be merged
+  $ dashflow -c a_service/dashflow.yml,b_service/dashflow.yml
+
+  custom http port
+  $ dashflow -p 9527
+
+  run with additional debug information
+  $ DEBUG="daemon:*" dashflow
+  $ DEBUG="events:*" dashflow
+  $ DEBUG="stream:*" dashflow
+  $ DEBUG="workflow:*" dashflow
+  $ DEBUG="*" dashflow
+`);
+  })
+  .parse(process.argv);
+
+start(program.config.split(","), program.port, program.args);

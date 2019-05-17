@@ -1,0 +1,49 @@
+{
+  "name": "dashflow",
+  "version": "1.2.7",
+  "description": "A modern makefile alternative with local dev workflow support and beautiful dashboard",
+  "main": "index.js",
+  "repository": "https://github.com/freewheel/dashflow",
+  "author": "FreeWheel, A Comcast Company",
+  "license": "Apache-2.0",
+  "private": false,
+  "bin": {
+    "dashflow": "./bin/dashflow"
+  },
+  "files": [
+    "index.js",
+    "lib",
+    "web",
+    "bin",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "eslint lib test web/dashflow_*.js && echo 'lint passed\n'",
+    "start": "dashflow",
+    "format": "prettier --write \"lib/**/*.js\" && prettier --write \"web/dashflow_*.js\"",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.1",
+    "mocha": "^6.0.2",
+    "prettier": "^1.16.4"
+  },
+  "dependencies": {
+    "ansi-escapes": "^3.2.0",
+    "boxen": "^3.0.0",
+    "chalk": "^2.4.2",
+    "chokidar": "^2.1.2",
+    "columnify": "^1.5.4",
+    "commander": "^2.19.0",
+    "js-yaml": "^3.12.2",
+    "node-pty": "^0.8.1",
+    "portfinder": "^1.0.20",
+    "serve-handler": "^5.0.8",
+    "socket.io": "^2.2.0",
+    "vorpal": "^1.12.0"
+  },
+  "prettier": {
+    "trailingComma": "es5"
+  }
+}

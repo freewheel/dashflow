@@ -1,0 +1,113 @@
+commands:
+  lint: yarn --silent lint
+  test:
+    shell: { cmd: yarn --silent test --no-color --verbose }
+  list-web-files:
+    shell: { cmd: ls, cwd: web }
+  lint-then-test:
+    serial:
+      - lint
+      - test
+  lint-and-test:
+    parallel:
+      - lint
+      - test
+
+streams:
+  watch-lib:
+    watch: { glob: "lib/**/*.js" }
+  watch-test:
+    watch: { glob: "**/*.js", cwd: test }
+  watch-web:
+    watch: { glob: "dashflow_*.js", cwd: web }
+  irb: irb
+  iex: iex
+  python:
+    shell: { cmd: python -i }
+  vim:
+    shell: { cmd: vim, cwd: test }
+
+workflows:
+  initial-lint:
+    match: SYSTEM:started
+    command: lint
+  initial-test:
+    match: SYSTEM:started
+    command: test
+  lib-lint-then-test:
+    match: watch-lib:.*
+    serial:
+      - command: lint
+      - command: test
+  test-lint-then-test:
+    match: watch-test:.*
+    parallel:
+      - command: lint
+      - command: test
+      - restart: irb
+  web-lint:
+    match: watch-web:.*
+    serial:
+      - wait: 1000
+      - command: lint
+
+dashboards:
+  all-in-one:
+    - log:
+        position: 0 0 45% 50%
+        title: Lint
+        filter: command:lint:.*
+    - log:
+        position: 45% 0 90% 50%
+        title: Test
+        filter: command:test:.*
+    - banner:
+        position: 90% 0 100% 16%
+        content: This is Dashflow Dashboard
+    - gauge:
+        position: 90% 16% 100% 32%
+        title: Lint Status
+        filter: command:lint:state:.*
+        scan:
+          when:
+            - pattern: started
+              text: Running
+              color: yellow
+            - pattern: exited with 0
+              text: Passed
+              color: green
+            - pattern: exited with
+              text: Failed
+              color: red
+          default:
+            text: Unknown
+    - gauge:
+        position: 90% 32% 100% 50%
+        title: Test Status
+        filter: command:test:state:.*
+        scan:
+          when:
+            - pattern: started
+              text: Running
+              color: yellow
+            - pattern: exited with 0
+              text: Passed
+              color: green
+            - pattern: exited with
+              text: Failed
+              color: red
+          default:
+            text: Unknown
+    - log:
+        position: 0 50% 50% 100%
+        title: IRB
+        filter: stream:irb:.*
+    - log:
+        position: 50% 50% 100% 100%
+        title: IEX
+        filter: stream:iex:.*
+  lint-only:
+    - log:
+        position: 0 0 100% 100%
+        title: Lint
+        filter: command:lint:.*
