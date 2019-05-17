@@ -10,6 +10,7 @@ A modern makefile alternative with local dev workflow support and beautiful dash
 - Has a beautiful dashboard which is served by the built-in HTTP server to visualize the status of those commands
 
 ![run processes](./guide_assets/interactive_shell.min.png)
+![web dashboard](./guide_assets/web_dashboard.min.png)
 
 ## Installation
 
