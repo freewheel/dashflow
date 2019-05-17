@@ -9,8 +9,8 @@ A modern makefile alternative with local dev workflow support and beautiful dash
 - Trigger new commands when output from those commands matches certain pattern
 - Has a beautiful dashboard which is served by the built-in HTTP server to visualize the status of those commands
 
-![run processes](./guide_assets/interactive_shell.min.png)
-![web dashboard](./guide_assets/web_dashboard.min.png)
+![run processes](https://github.com/freewheel/dashflow/blob/master/guide_assets/interactive_shell.min.png)
+![web dashboard](https://github.com/freewheel/dashflow/blob/master/guide_assets/web_dashflow.min.png)
 
 ## Installation
 
