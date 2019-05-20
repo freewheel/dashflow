@@ -57,32 +57,30 @@ dashboards:
         position: 0 0 45% 50%
         title: Lint
         filter: command:lint:.*
+        gauge:
+          filter: command:lint:state:.*
+          scan:
+            when:
+              - pattern: started
+                text: Running
+                color: yellow
+              - pattern: exited with 0
+                text: Passed
+                color: green
+              - pattern: exited with
+                text: Failed
+                color: red
+            default:
+              text: Unknown
     - log:
         position: 45% 0 90% 50%
         title: Test
         filter: command:test:.*
     - banner:
-        position: 90% 0 100% 16%
+        position: 90% 0 100% 25%
         content: This is Dashflow Dashboard
     - gauge:
-        position: 90% 16% 100% 32%
-        title: Lint Status
-        filter: command:lint:state:.*
-        scan:
-          when:
-            - pattern: started
-              text: Running
-              color: yellow
-            - pattern: exited with 0
-              text: Passed
-              color: green
-            - pattern: exited with
-              text: Failed
-              color: red
-          default:
-            text: Unknown
-    - gauge:
-        position: 90% 32% 100% 50%
+        position: 90% 25% 100% 50%
         title: Test Status
         filter: command:test:state:.*
         scan:
