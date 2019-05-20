@@ -153,10 +153,10 @@
     return themes[id % themes.length];
   }
 
-  const Panel = ({ title, content, style, colorDepth }) => {
+  const Panel = ({ title, content, style, colorDepth, className }) => {
     const { top, left, width, height } = style;
 
-    const themeColors = theme(colorDepth);
+    const themeColors = (colorDepth) ? theme(colorDepth) : {};
 
     return React.createElement(
       "div",
@@ -184,6 +184,7 @@
                 padding: ".2em .5em",
                 cursor: "default",
               },
+              className
             },
             title
           ),

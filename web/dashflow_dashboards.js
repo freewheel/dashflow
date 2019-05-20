@@ -102,6 +102,8 @@
     );
   }
 
+  // LOG
+
   function log(title, positionSpec, filter, limit = 500) {
     const pattern = new RegExp(filter);
 
@@ -139,9 +141,9 @@
     );
   }
 
-  function gauge(title, positionSpec, filter, scan) {
-    const pattern = new RegExp(filter);
+  // GAUGE
 
+  function getGaugeDisplay(scan, lines) {
     const normalizedScan = {
       when:
         scan.when &&
@@ -155,37 +157,39 @@
         color: (scan.default && scan.default.color) || "grey",
       },
     };
-
-    function getGaugeDisplay(lines) {
-      for (let i = lines.length - 1; i >= 0; i--) {
-        for (let test of normalizedScan.when) {
-          if (test.pattern.test(lines[i])) {
-            return {
-              text: test.text,
-              color: test.color,
-            };
-          }
+    for (let i = lines.length - 1; i >= 0; i--) {
+      for (let test of normalizedScan.when) {
+        if (test.pattern.test(lines[i])) {
+          return {
+            text: test.text,
+            color: test.color,
+          };
         }
       }
-
-      return normalizedScan.default;
     }
 
-    function mapColorToClass(color) {
-      if (color === "yellow") {
-        return "toast-warning";
-      } else if (color === "green") {
-        return "toast-success";
-      } else if (color === "red") {
-        return "toast-error";
-      } else {
-        return "";
-      }
+    return normalizedScan.default;
+  }
+
+  function mapColorToClass(color) {
+    if (color === "yellow") {
+      return "toast-warning";
+    } else if (color === "green") {
+      return "toast-success";
+    } else if (color === "red") {
+      return "toast-error";
+    } else {
+      return "";
     }
+  }
+
+  function gauge(title, positionSpec, filter, scan) {
+    const pattern = new RegExp(filter);
 
     return Components.pure(
       function getGauge({ events, index }) {
         const { color, text } = getGaugeDisplay(
+          scan,
           events
             .filter(e => pattern.test(Utils.stripAnsi(e.e)))
             .map(({ e }) => Utils.stripAnsi(e))
@@ -223,6 +227,51 @@
     );
   }
 
+  // LOG GAUGE
+
+  function logGauge(title, positionSpec, logFilter, gaugeFilter, scan, limit = 500) {
+    const logPattern = new RegExp(logFilter);
+    const gaugePattern = new RegExp(gaugeFilter);
+
+    return Components.pure(
+      function getLogGauge({ events, globalFilter }) {
+        const globalFilterPattern = new RegExp(globalFilter);
+
+        const { color, text } = getGaugeDisplay(
+          scan,
+          events
+            .filter(e => gaugePattern.test(Utils.stripAnsi(e.e)))
+            .map(({ e }) => Utils.stripAnsi(e))
+        );
+
+        return React.createElement(Components.Panel, {
+          title: React.createElement(
+            "span",
+            {
+              className: 'tooltip tooltip-right',
+              "data-tooltip": `filter: "${logFilter}"`,
+            },
+            `${title}: ${text}`.toUpperCase()
+          ),
+          style: Utils.positionSpecToStyle(positionSpec),
+          className: `toast ${mapColorToClass(color)}`,
+          content: React.createElement(Components.ReadOnlyArea, {
+            lines: events
+              .filter(
+                e =>
+                logPattern.test(e.e) &&
+                  e.h !== undefined &&
+                  globalFilterPattern.test(e.h)
+              )
+              .map(({ h }) => Utils.normalizeLineBreaks(Utils.stripAnsi(h)))
+              .join("").split("\n").slice(-limit),
+          }),
+        });
+      },
+      ["events", "globalFilter", "index"]
+    );
+  }
+
   function parseDashboardFunction(title, spec) {
     const types = Object.keys(spec);
 
@@ -235,6 +284,8 @@
       return gauge(s.title, s.position, s.filter, s.scan);
     } else if (type === "banner") {
       return banner(s.position, s.content);
+    } else if (type === "logGauge") {
+      return logGauge(s.title, s.position, s.logFilter, s.gaugeFilter, s.scan, s.limit || 500);
     } else {
       return null;
     }
