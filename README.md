@@ -430,3 +430,6 @@ dashboardID:
       content: <static content string>
 ```
 
+## Acknowledgement
+
+Dashflow was initially built by engineers @ [FreeWheel, a Comcast company](https://freewheel.tv/), and donated to the open source community.

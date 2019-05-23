@@ -1,3 +1,7 @@
+# 2019-05-23
+
+- updated favicon and logo
+
 # 2019-04-21
 
 - fixed interactive shell bug
