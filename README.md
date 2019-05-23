@@ -1,5 +1,7 @@
 # dashflow
 
+![logo](https://github.com/freewheel/dashflow/blob/master/guide_assets/dashflow-header.min.png)
+
 A modern makefile alternative with local dev workflow support and beautiful dashboard.
 
 ## What can dashflow do for you
