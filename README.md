@@ -2,6 +2,8 @@
 
 ![logo](https://github.com/freewheel/dashflow/blob/master/guide_assets/dashflow-header.min.png)
 
+![npm](https://img.shields.io/npm/v/dashflow.svg)
+
 A modern makefile alternative with local dev workflow support and beautiful dashboard.
 
 ## What can dashflow do for you
