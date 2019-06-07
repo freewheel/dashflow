@@ -407,6 +407,28 @@ dashboardID:
       title: <title string>
       filter: <filter pattern>
 
+# show a console log with a header gauge
+dashboardID:
+  - log:
+      position: <rectangular: x1 y1 x2 y2>
+      title: <title string>
+      filter: <log filter pattern>
+      gauge:
+        filter: <gauge filter pattern>
+        scan:
+          when:
+            - pattern: started
+              text: Running
+              color: yellow
+            - pattern: exited with 0
+              text: Passed
+              color: green
+            - pattern: exited with
+              text: Failed
+              color: red
+          default:
+            text: Unknown
+
 # show status text by running some calculations
 dashboardID:
   - gauge:

@@ -279,13 +279,14 @@
     const s = spec[type];
 
     if (type === "log") {
+      if (s.gauge) {
+        return logGauge(s.title, s.position, s.filter, s.gauge.filter, s.gauge.scan, s.limit || 500);
+      }
       return log(s.title, s.position, s.filter, s.limit || 500);
     } else if (type === "gauge") {
       return gauge(s.title, s.position, s.filter, s.scan);
     } else if (type === "banner") {
       return banner(s.position, s.content);
-    } else if (type === "logGauge") {
-      return logGauge(s.title, s.position, s.logFilter, s.gaugeFilter, s.scan, s.limit || 500);
     } else {
       return null;
     }

@@ -1,3 +1,7 @@
+# 2019-06-07
+
+- added option for log with gauge
+
 # 2019-05-23
 
 - updated favicon and logo
