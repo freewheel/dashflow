@@ -156,7 +156,7 @@
   const Panel = ({ title, content, style, colorDepth, className }) => {
     const { top, left, width, height } = style;
 
-    const themeColors = (colorDepth) ? theme(colorDepth) : {};
+    const themeColors = (colorDepth !== -1) ? theme(colorDepth) : {};
 
     return React.createElement(
       "div",
