@@ -54,7 +54,7 @@ workflows:
 dashboards:
   all-in-one:
     - log:
-        position: 0 0 45% 50%
+        position: 0 0 50% 50%
         title: Lint
         filter: command:lint:.*
         gauge:
@@ -73,7 +73,7 @@ dashboards:
             default:
               text: Unknown
     - log:
-        position: 45% 0 90% 50%
+        position: 50% 0 100% 50%
         title: Test
         filter: command:test:.*
         gauge:
@@ -91,9 +91,6 @@ dashboards:
                 color: red
             default:
               text: Unknown
-    - banner:
-        position: 90% 0 100% 25%
-        content: This is Dashflow Dashboard
     - log:
         position: 0 50% 50% 100%
         title: IRB
