@@ -1,5 +1,9 @@
 # dashflow
 
+![logo](https://github.com/freewheel/dashflow/blob/master/guide_assets/dashflow-header.min.png)
+
+![npm](https://img.shields.io/npm/v/dashflow.svg)
+
 A modern makefile alternative with local dev workflow support and beautiful dashboard.
 
 ## What can dashflow do for you
@@ -9,7 +13,8 @@ A modern makefile alternative with local dev workflow support and beautiful dash
 - Trigger new commands when output from those commands matches certain pattern
 - Has a beautiful dashboard which is served by the built-in HTTP server to visualize the status of those commands
 
-![run processes](./guide_assets/interactive_shell.min.png)
+![run processes](https://github.com/freewheel/dashflow/blob/master/guide_assets/interactive_shell.min.png)
+![web dashboard](https://github.com/freewheel/dashflow/blob/master/guide_assets/web_dashflow.min.png)
 
 ## Installation
 
@@ -427,3 +432,6 @@ dashboardID:
       content: <static content string>
 ```
 
+## Acknowledgement
+
+Dashflow was initially built by engineers @ [FreeWheel, a Comcast company](https://freewheel.tv/), and donated to the open source community.
