@@ -54,6 +54,14 @@ workflows:
 dashboards:
   all-in-one:
     - log:
+        position: 0 50% 50% 100%
+        title: IRB
+        filter: stream:irb:.*
+    - log:
+        position: 50% 50% 100% 100%
+        title: IEX
+        filter: stream:iex:.*
+    - log:
         position: 0 0 50% 50%
         title: Lint
         filter: command:lint:.*
@@ -91,14 +99,6 @@ dashboards:
                 color: red
             default:
               text: Unknown
-    - log:
-        position: 0 50% 50% 100%
-        title: IRB
-        filter: stream:irb:.*
-    - log:
-        position: 50% 50% 100% 100%
-        title: IEX
-        filter: stream:iex:.*
   lint-only:
     - log:
         position: 0 0 100% 100%

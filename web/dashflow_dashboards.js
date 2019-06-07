@@ -254,6 +254,7 @@
             `${title}: ${text}`.toUpperCase()
           ),
           style: Utils.positionSpecToStyle(positionSpec),
+          colorDepth: -1,
           className: `toast ${mapColorToClass(color)}`,
           content: React.createElement(Components.ReadOnlyArea, {
             lines: events
