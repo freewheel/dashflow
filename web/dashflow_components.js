@@ -103,72 +103,20 @@
     };
   };
 
-  function theme(id) {
-    // rainbow colors
-    const themes = [
-      {
-        titleBackground: "rgb(255, 0, 0)",
-        titleColor: "rgb(209, 228, 201)",
-        bodyBackground: "rgb(255, 0, 0, 0.5)",
-        bodyColor: "rgb(46, 27, 54)",
-      },
-      {
-        titleBackground: "rgb(255, 127, 0)",
-        titleColor: "rgb(209, 228, 201)",
-        bodyBackground: "rgb(255, 127, 0, 0.5)",
-        bodyColor: "rgb(46, 27, 54)",
-      },
-      {
-        titleBackground: "rgb(255, 255, 0)",
-        titleColor: "rgb(46, 27, 54)",
-        bodyBackground: "rgb(255, 255, 0, 0.5)",
-        bodyColor: "rgb(46, 27, 54)",
-      },
-      {
-        titleBackground: "rgb(0, 255, 0)",
-        titleColor: "rgb(46, 27, 54)",
-        bodyBackground: "rgb(0, 255, 0, 0.5)",
-        bodyColor: "rgb(46, 27, 54)",
-      },
-      {
-        titleBackground: "rgb(0, 0, 255)",
-        titleColor: "rgb(209, 228, 201)",
-        bodyBackground: "rgb(0, 0, 255, 0.5)",
-        bodyColor: "rgb(46, 27, 54)",
-      },
-      {
-        titleBackground: "rgb(75, 0, 130)",
-        titleColor: "rgb(209, 228, 201)",
-        bodyBackground: "rgb(75, 0, 130, 0.5)",
-        bodyColor: "rgb(46, 27, 54)",
-      },
-      {
-        titleBackground: "rgb(148, 0, 211)",
-        titleColor: "rgb(209, 228, 201)",
-        bodyBackground: "rgb(148, 0, 211, 0.5)",
-        bodyColor: "rgb(46, 27, 54)",
-      },
-    ];
-
-    return themes[id % themes.length];
-  }
-
-  const Panel = ({ title, content, style, colorDepth, className }) => {
+  const Panel = ({ title, content, style, className }) => {
     const { top, left, width, height } = style;
-
-    const themeColors = (colorDepth !== -1) ? theme(colorDepth) : {};
 
     return React.createElement(
       "div",
       {
         style: {
-          display: "flex",
-          flexDirection: "column",
+          boxSizing: 'border-box',
           position: "absolute",
           top,
           left,
           width,
           height,
+          padding: '10px'
         },
       },
       [
@@ -177,11 +125,10 @@
             "div",
             {
               style: {
-                background: themeColors.titleBackground,
-                color: themeColors.titleColor,
                 fontSize: "1.2em",
                 fontWeight: 500,
                 padding: ".2em .5em",
+                height: '2em',
                 cursor: "default",
               },
               className
@@ -195,8 +142,9 @@
               flexGrow: "1",
               display: "flex",
               flexDirection: "column",
-              background: themeColors.bodyBackground,
-              color: themeColors.bodyColor,
+              height: 'calc(100% - 2em)',
+              background: '#0000000D',
+              color: '#222',
               overflow: "hidden",
               fontFamily: '"Inconsolata", "Lucida Console", Monaco, monospace',
             },
@@ -216,15 +164,19 @@
   }) =>
     React.createElement(
       "div",
-      { style: { position: "relative", flexGrow: "1" } },
-      pannels.map((renderer, index) =>
-        React.createElement(renderer, {
-          events,
-          globalFilter,
-          index,
-          dashboardsYAML,
-          updateDashboardsYAML,
-        })
+      { style: { padding: '10px', height: "calc(100% - 3em)", boxSizing: 'border-box' } },
+      React.createElement(
+        "div",
+        { style: { position: "relative", height: "100%" } },
+        pannels.map((renderer, index) =>
+          React.createElement(renderer, {
+            events,
+            globalFilter,
+            index,
+            dashboardsYAML,
+            updateDashboardsYAML,
+          })
+        )
       )
     );
 
@@ -239,7 +191,7 @@
       "header",
       {
         className: "navbar",
-        style: { padding: ".5em" },
+        style: { boxSizing:'border-box', padding: ".5em", height: '3em' },
       },
       [
         React.createElement(
