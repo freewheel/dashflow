@@ -23,7 +23,7 @@
         width: "100%",
         height: "50%",
       },
-      colorDepth: 0,
+      className: `toast`,
       content: React.createElement(Components.ReadOnlyArea, {
         lines: eventsAfterFilter.slice(-100),
       }),
@@ -39,7 +39,7 @@
         width: "15%",
         height: "10%",
       },
-      colorDepth: 1,
+      className: `toast`,
       content: React.createElement(
         "div",
         { style: { padding: ".4em", color: "#fff" } },
@@ -63,7 +63,7 @@
         width: "100%",
         height: "50%",
       },
-      colorDepth: 2,
+      className: `toast`,
       content: React.createElement(Components.EditableArea, {
         value: dashboardsYAML,
         onChange: updateDashboardsYAML,
@@ -81,10 +81,9 @@
 
   function banner(positionSpec, content) {
     return Components.pure(
-      function getBanner({ index }) {
+      function getBanner() {
         return React.createElement(Components.Panel, {
           style: Utils.positionSpecToStyle(positionSpec),
-          colorDepth: index,
           content: React.createElement(
             "div",
             {
@@ -108,7 +107,7 @@
     const pattern = new RegExp(filter);
 
     return Components.pure(
-      function getLog({ events, globalFilter, index }) {
+      function getLog({ events, globalFilter }) {
         const globalFilterPattern = new RegExp(globalFilter);
 
         return React.createElement(Components.Panel, {
@@ -121,7 +120,7 @@
             title.toUpperCase()
           ),
           style: Utils.positionSpecToStyle(positionSpec),
-          colorDepth: index,
+          className: `toast`,
           content: React.createElement(Components.ReadOnlyArea, {
             lines: events
               .filter(
@@ -187,7 +186,7 @@
     const pattern = new RegExp(filter);
 
     return Components.pure(
-      function getGauge({ events, index }) {
+      function getGauge({ events }) {
         const { color, text } = getGaugeDisplay(
           scan,
           events
@@ -205,7 +204,6 @@
             title.toUpperCase()
           ),
           style: Utils.positionSpecToStyle(positionSpec),
-          colorDepth: index,
           content: React.createElement(
             "span",
             {
@@ -254,7 +252,6 @@
             `${title}: ${text}`.toUpperCase()
           ),
           style: Utils.positionSpecToStyle(positionSpec),
-          colorDepth: -1,
           className: `toast ${mapColorToClass(color)}`,
           content: React.createElement(Components.ReadOnlyArea, {
             lines: events
