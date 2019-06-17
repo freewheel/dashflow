@@ -1,3 +1,7 @@
+# 2019-06-17
+
+- updated dashboard look and feel
+
 # 2019-06-07
 
 - added option for log with gauge
