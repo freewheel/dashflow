@@ -23,7 +23,6 @@
         width: "100%",
         height: "50%",
       },
-      className: `title`,
       content: React.createElement(Components.ReadOnlyArea, {
         lines: eventsAfterFilter.slice(-200),
       }),
@@ -46,7 +45,6 @@
         width: "100%",
         height: "50%",
       },
-      className: `title`,
       content: React.createElement(Components.EditableArea, {
         value: dashboardsYAML,
         onChange: updateDashboardsYAML,
@@ -55,10 +53,7 @@
 
   const SystemDashboard = {
     title: "SYSTEM",
-    pannels: [
-      Components.pure(Events),
-      Components.pure(DashboardsConfig),
-    ],
+    pannels: [Components.pure(Events), Components.pure(DashboardsConfig)],
   };
 
   function banner(positionSpec, content) {
@@ -158,7 +153,7 @@
       function getLogGauge({ events, globalFilter }) {
         const globalFilterPattern = new RegExp(globalFilter);
 
-        let className = "title";
+        let className = "";
         let titleText = title;
 
         if (gauge) {
@@ -171,7 +166,7 @@
               .map(({ e }) => Utils.stripAnsi(e))
           );
 
-          className += ` ${level}`;
+          className = level;
           titleText += `: ${text}`;
         }
 
