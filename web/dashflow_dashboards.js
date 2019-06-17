@@ -201,11 +201,7 @@
                 textTransform: "uppercase",
               },
             },
-            React.createElement(
-              "div",
-              { className: level },
-              text
-            )
+            React.createElement("div", { className: level }, text)
           ),
         });
       },
@@ -215,7 +211,14 @@
 
   // LOG GAUGE
 
-  function logGauge(title, positionSpec, logFilter, gaugeFilter, scan, limit = 500) {
+  function logGauge(
+    title,
+    positionSpec,
+    logFilter,
+    gaugeFilter,
+    scan,
+    limit = 500
+  ) {
     const logPattern = new RegExp(logFilter);
     const gaugePattern = new RegExp(gaugeFilter);
 
@@ -234,7 +237,7 @@
           title: React.createElement(
             "span",
             {
-              className: 'tooltip tooltip-right',
+              className: "tooltip tooltip-right",
               "data-tooltip": `filter: "${logFilter}"`,
             },
             `${title}: ${text}`.toUpperCase()
@@ -245,12 +248,14 @@
             lines: events
               .filter(
                 e =>
-                logPattern.test(e.e) &&
+                  logPattern.test(e.e) &&
                   e.h !== undefined &&
                   globalFilterPattern.test(e.h)
               )
               .map(({ h }) => Utils.normalizeLineBreaks(Utils.stripAnsi(h)))
-              .join("").split("\n").slice(-limit),
+              .join("")
+              .split("\n")
+              .slice(-limit),
           }),
         });
       },
@@ -266,7 +271,14 @@
 
     if (type === "log") {
       if (s.gauge) {
-        return logGauge(s.title, s.position, s.filter, s.gauge.filter, s.gauge.scan, s.limit || 500);
+        return logGauge(
+          s.title,
+          s.position,
+          s.filter,
+          s.gauge.filter,
+          s.gauge.scan,
+          s.limit || 500
+        );
       }
       return log(s.title, s.position, s.filter, s.limit || 500);
     } else if (type === "gauge") {

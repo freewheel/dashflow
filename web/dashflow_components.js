@@ -91,21 +91,21 @@
       "div",
       {
         className: "dash-panel",
-        style: { top, left, width, height }
+        style: { top, left, width, height },
       },
       [
         title &&
           React.createElement(
             "div",
             {
-              className: `${className} title`
+              className: `${className} title`,
             },
             title
           ),
         React.createElement(
           "div",
           {
-            className: 'content',
+            className: "content",
           },
           content
         ),
@@ -122,10 +122,10 @@
   }) =>
     React.createElement(
       "div",
-      { className: 'dashboard-container' },
+      { className: "dashboard-container" },
       React.createElement(
         "div",
-        { className: 'dashboard-wrapper' },
+        { className: "dashboard-wrapper" },
         pannels.map((renderer, index) =>
           React.createElement(renderer, {
             events,
@@ -148,7 +148,7 @@
     return React.createElement(
       "header",
       {
-        className: 'navbar dash-header'
+        className: "navbar dash-header",
       },
       [
         React.createElement(
@@ -183,11 +183,17 @@
           React.createElement(
             "a",
             {
-              href: "#",
+              href: "https://github.com/freewheel/dashflow",
               className: "logo",
               target: "_blank",
             },
-            "Dashflow"
+            React.createElement(
+              "img",
+              {
+                src: "/logo/dashflow-icon-32x32.png",
+                alt: "Dashflow"
+              }
+            )
           )
         ),
         React.createElement(

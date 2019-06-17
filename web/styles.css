@@ -25,20 +25,6 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-@keyframes logo-color {
-  0% {color: #eee;}
-  50% {color: red;}
-  100% {color: #eee;}
-}
-
-.logo { color: #eee; outline: none; }
-.logo:visited { color: #eee; }
-.logo:hover {
-  animation-name: logo-color;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-}
-
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -65,7 +51,7 @@
 }
 
 .dashboard-container {
-  padding: 10px;
+  padding: 2px;
   height: calc(100% - 3em);
   box-sizing: border-box;
 }
@@ -101,7 +87,7 @@
 .dash-panel {
   box-sizing: border-box;
   position: absolute;
-  padding: 10px;
+  padding: 2px;
 }
 
 .dash-panel .title {
