@@ -35,17 +35,7 @@
 
       return React.createElement("textarea", {
         ref: this.textareaRef,
-        style: {
-          flexGrow: "1",
-          width: "100%",
-          background: "transparent",
-          resize: "none",
-          outline: "none",
-          border: 0,
-          padding: ".5em",
-          color: "inherit",
-          cursor: "default",
-        },
+        className: "read-only-area",
         readOnly: true,
         value: lines.join(TEXTAREA_LINE_BREAK),
       });
@@ -55,16 +45,7 @@
   const EditableArea = ({ value, onChange }) =>
     React.createElement("textarea", {
       ref: this.textareaRef,
-      style: {
-        flexGrow: "1",
-        width: "100%",
-        background: "transparent",
-        resize: "none",
-        outline: "none",
-        border: 0,
-        padding: ".5em",
-        color: "inherit",
-      },
+      className: "editable-area",
       value,
       onChange: event => {
         onChange(event.target.value);
@@ -109,45 +90,22 @@
     return React.createElement(
       "div",
       {
-        style: {
-          boxSizing: 'border-box',
-          position: "absolute",
-          top,
-          left,
-          width,
-          height,
-          padding: '10px'
-        },
+        className: "dash-panel",
+        style: { top, left, width, height }
       },
       [
         title &&
           React.createElement(
             "div",
             {
-              style: {
-                fontSize: "1.2em",
-                fontWeight: 500,
-                padding: ".2em .5em",
-                height: '2em',
-                cursor: "default",
-              },
-              className
+              className: `${className} title`
             },
             title
           ),
         React.createElement(
           "div",
           {
-            style: {
-              flexGrow: "1",
-              display: "flex",
-              flexDirection: "column",
-              height: 'calc(100% - 2em)',
-              background: '#0000000D',
-              color: '#222',
-              overflow: "hidden",
-              fontFamily: '"Inconsolata", "Lucida Console", Monaco, monospace',
-            },
+            className: 'content',
           },
           content
         ),
@@ -164,10 +122,10 @@
   }) =>
     React.createElement(
       "div",
-      { style: { padding: '10px', height: "calc(100% - 3em)", boxSizing: 'border-box' } },
+      { className: 'dashboard-container' },
       React.createElement(
         "div",
-        { style: { position: "relative", height: "100%" } },
+        { className: 'dashboard-wrapper' },
         pannels.map((renderer, index) =>
           React.createElement(renderer, {
             events,
@@ -190,8 +148,7 @@
     return React.createElement(
       "header",
       {
-        className: "navbar",
-        style: { boxSizing:'border-box', padding: ".5em", height: '3em' },
+        className: 'navbar dash-header'
       },
       [
         React.createElement(
@@ -318,8 +275,7 @@
           React.createElement(
             "div",
             {
-              className: "loading loading-lg",
-              style: { height: "100%", width: "100%" },
+              className: "loading loading-lg app",
             },
             "Loading"
           ),
