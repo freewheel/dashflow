@@ -1,7 +1,7 @@
 /* eslint-env browser */
 /* global React, Utils, Components */
 (function dashboards() {
-  const LatestEvents = ({ events, globalFilter }) => {
+  const Events = ({ events, globalFilter }) => {
     const globalFilterPattern = new RegExp(globalFilter);
 
     const eventsAfterFilter = events
@@ -13,9 +13,9 @@
         "span",
         {
           className: "tooltip tooltip-right",
-          "data-tooltip": "showing latest 100 events",
+          "data-tooltip": "showing latest 200 events",
         },
-        "LATEST EVENTS"
+        `Events: ${events.length} in total`
       ),
       style: {
         top: 0,
@@ -25,27 +25,10 @@
       },
       className: `title`,
       content: React.createElement(Components.ReadOnlyArea, {
-        lines: eventsAfterFilter.slice(-100),
+        lines: eventsAfterFilter.slice(-200),
       }),
     });
   };
-
-  const TotalEvents = ({ events }) =>
-    React.createElement(Components.Panel, {
-      title: "TOTAL EVENTS",
-      style: {
-        top: 0,
-        left: "85%",
-        width: "15%",
-        height: "10%",
-      },
-      className: `title`,
-      content: React.createElement(
-        "div",
-        { style: { padding: ".4em", color: "#000" } },
-        String(events.length)
-      ),
-    });
 
   const DashboardsConfig = ({ dashboardsYAML, updateDashboardsYAML }) =>
     React.createElement(Components.Panel, {
@@ -55,7 +38,7 @@
           className: "tooltip tooltip-right",
           "data-tooltip": "editable, change will be applied",
         },
-        "DASHBOARDS CONFIG"
+        "Dashboards Config"
       ),
       style: {
         top: "50%",
@@ -73,71 +56,28 @@
   const SystemDashboard = {
     title: "SYSTEM",
     pannels: [
-      Components.pure(LatestEvents),
-      Components.pure(TotalEvents),
+      Components.pure(Events),
       Components.pure(DashboardsConfig),
     ],
   };
 
   function banner(positionSpec, content) {
-    return Components.pure(
-      function getBanner() {
-        return React.createElement(Components.Panel, {
-          style: Utils.positionSpecToStyle(positionSpec),
-          content: React.createElement(
-            "div",
-            {
-              style: {
-                fontSize: "1.2em",
-                padding: ".2em",
-                fontWeight: 500,
-              },
+    return Components.pure(function getBanner() {
+      return React.createElement(Components.Panel, {
+        style: Utils.positionSpecToStyle(positionSpec),
+        content: React.createElement(
+          "div",
+          {
+            style: {
+              fontSize: "1.2em",
+              padding: ".2em",
+              fontWeight: 500,
             },
-            content
-          ),
-        });
-      },
-      ["index"]
-    );
-  }
-
-  // LOG
-
-  function log(title, positionSpec, filter, limit = 500) {
-    const pattern = new RegExp(filter);
-
-    return Components.pure(
-      function getLog({ events, globalFilter }) {
-        const globalFilterPattern = new RegExp(globalFilter);
-
-        return React.createElement(Components.Panel, {
-          title: React.createElement(
-            "span",
-            {
-              className: "tooltip tooltip-right",
-              "data-tooltip": `filter: "${filter}"`,
-            },
-            title.toUpperCase()
-          ),
-          style: Utils.positionSpecToStyle(positionSpec),
-          className: `title`,
-          content: React.createElement(Components.ReadOnlyArea, {
-            lines: events
-              .filter(
-                e =>
-                  pattern.test(e.e) &&
-                  e.h !== undefined &&
-                  globalFilterPattern.test(e.h)
-              )
-              .map(({ h }) => Utils.normalizeLineBreaks(Utils.stripAnsi(h)))
-              .join("")
-              .split("\n")
-              .slice(-limit),
-          }),
-        });
-      },
-      ["events", "globalFilter", "index"]
-    );
+          },
+          content
+        ),
+      });
+    });
   }
 
   // GAUGE
@@ -189,7 +129,7 @@
               className: "tooltip tooltip-bottom",
               "data-tooltip": `filter: "${filter}"`,
             },
-            title.toUpperCase()
+            title
           ),
           style: Utils.positionSpecToStyle(positionSpec),
           content: React.createElement(
@@ -205,33 +145,35 @@
           ),
         });
       },
-      ["events", "index"]
+      ["events"]
     );
   }
 
-  // LOG GAUGE
+  // LOG WITH GAUGE SUPPORT
 
-  function logGauge(
-    title,
-    positionSpec,
-    logFilter,
-    gaugeFilter,
-    scan,
-    limit = 500
-  ) {
+  function log(title, positionSpec, logFilter, gauge, limit = 500) {
     const logPattern = new RegExp(logFilter);
-    const gaugePattern = new RegExp(gaugeFilter);
 
     return Components.pure(
       function getLogGauge({ events, globalFilter }) {
         const globalFilterPattern = new RegExp(globalFilter);
 
-        const { level, text } = getGaugeDisplay(
-          scan,
-          events
-            .filter(e => gaugePattern.test(Utils.stripAnsi(e.e)))
-            .map(({ e }) => Utils.stripAnsi(e))
-        );
+        let className = "title";
+        let titleText = title;
+
+        if (gauge) {
+          const gaugePattern = new RegExp(gauge.filter);
+
+          const { level, text } = getGaugeDisplay(
+            gauge.scan,
+            events
+              .filter(e => gaugePattern.test(Utils.stripAnsi(e.e)))
+              .map(({ e }) => Utils.stripAnsi(e))
+          );
+
+          className += ` ${level}`;
+          titleText += `: ${text}`;
+        }
 
         return React.createElement(Components.Panel, {
           title: React.createElement(
@@ -240,10 +182,10 @@
               className: "tooltip tooltip-right",
               "data-tooltip": `filter: "${logFilter}"`,
             },
-            `${title}: ${text}`.toUpperCase()
+            titleText
           ),
           style: Utils.positionSpecToStyle(positionSpec),
-          className: level,
+          className,
           content: React.createElement(Components.ReadOnlyArea, {
             lines: events
               .filter(
@@ -259,7 +201,7 @@
           }),
         });
       },
-      ["events", "globalFilter", "index"]
+      ["events", "globalFilter"]
     );
   }
 
@@ -270,17 +212,7 @@
     const s = spec[type];
 
     if (type === "log") {
-      if (s.gauge) {
-        return logGauge(
-          s.title,
-          s.position,
-          s.filter,
-          s.gauge.filter,
-          s.gauge.scan,
-          s.limit || 500
-        );
-      }
-      return log(s.title, s.position, s.filter, s.limit || 500);
+      return log(s.title, s.position, s.filter, s.gauge, s.limit || 500);
     } else if (type === "gauge") {
       return gauge(s.title, s.position, s.filter, s.scan);
     } else if (type === "banner") {

@@ -126,11 +126,10 @@
       React.createElement(
         "div",
         { className: "dashboard-wrapper" },
-        pannels.map((renderer, index) =>
+        pannels.map(renderer =>
           React.createElement(renderer, {
             events,
             globalFilter,
-            index,
             dashboardsYAML,
             updateDashboardsYAML,
           })
@@ -187,13 +186,10 @@
               className: "logo",
               target: "_blank",
             },
-            React.createElement(
-              "img",
-              {
-                src: "/logo/dashflow-icon-32x32.png",
-                alt: "Dashflow"
-              }
-            )
+            React.createElement("img", {
+              src: "/logo/dashflow-icon-32x32.png",
+              alt: "Dashflow",
+            })
           )
         ),
         React.createElement(
