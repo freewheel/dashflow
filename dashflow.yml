@@ -71,13 +71,13 @@ dashboards:
             when:
               - pattern: started
                 text: Running
-                color: yellow
+                level: warning
               - pattern: exited with 0
                 text: Passed
-                color: green
+                level: success
               - pattern: exited with
                 text: Failed
-                color: red
+                level: error
             default:
               text: Unknown
     - log:
@@ -90,13 +90,13 @@ dashboards:
             when:
               - pattern: started
                 text: Running
-                color: yellow
+                level: warning
               - pattern: exited with 0
                 text: Passed
-                color: green
+                level: success
               - pattern: exited with
                 text: Failed
-                color: red
+                level: error
             default:
               text: Unknown
   lint-only:

@@ -221,7 +221,7 @@
     if (messages.length > 0) {
       return React.createElement(
         "div",
-        { className: "toast toast-error" },
+        { className: "title error" },
         [
           React.createElement("button", {
             key: "clear",
