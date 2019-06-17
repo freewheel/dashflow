@@ -88,6 +88,8 @@
   box-sizing: border-box;
   position: absolute;
   padding: 2px;
+  display: flex;
+  flex-direction: column;
 }
 
 .dash-panel .title {
@@ -118,7 +120,6 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  height: calc(100% - 2em);
   background: #0000000D;
   color: #222;
   overflow: hidden;
