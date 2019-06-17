@@ -23,7 +23,7 @@
         width: "100%",
         height: "50%",
       },
-      className: `toast`,
+      className: `title`,
       content: React.createElement(Components.ReadOnlyArea, {
         lines: eventsAfterFilter.slice(-100),
       }),
@@ -39,10 +39,10 @@
         width: "15%",
         height: "10%",
       },
-      className: `toast`,
+      className: `title`,
       content: React.createElement(
         "div",
-        { style: { padding: ".4em", color: "#fff" } },
+        { style: { padding: ".4em", color: "#000" } },
         String(events.length)
       ),
     });
@@ -63,7 +63,7 @@
         width: "100%",
         height: "50%",
       },
-      className: `toast`,
+      className: `title`,
       content: React.createElement(Components.EditableArea, {
         value: dashboardsYAML,
         onChange: updateDashboardsYAML,
@@ -120,7 +120,7 @@
             title.toUpperCase()
           ),
           style: Utils.positionSpecToStyle(positionSpec),
-          className: `toast`,
+          className: `title`,
           content: React.createElement(Components.ReadOnlyArea, {
             lines: events
               .filter(
@@ -149,11 +149,11 @@
         scan.when.map(test => ({
           pattern: new RegExp(test.pattern),
           text: test.text,
-          color: test.color || "grey",
+          level: test.level,
         })),
       default: {
         text: (scan.default && scan.default.text) || "Unknown",
-        color: (scan.default && scan.default.color) || "grey",
+        level: (scan.default && scan.default.level) || "",
       },
     };
     for (let i = lines.length - 1; i >= 0; i--) {
@@ -161,7 +161,7 @@
         if (test.pattern.test(lines[i])) {
           return {
             text: test.text,
-            color: test.color,
+            level: test.level,
           };
         }
       }
@@ -170,24 +170,12 @@
     return normalizedScan.default;
   }
 
-  function mapColorToClass(color) {
-    if (color === "yellow") {
-      return "toast-warning";
-    } else if (color === "green") {
-      return "toast-success";
-    } else if (color === "red") {
-      return "toast-error";
-    } else {
-      return "";
-    }
-  }
-
   function gauge(title, positionSpec, filter, scan) {
     const pattern = new RegExp(filter);
 
     return Components.pure(
       function getGauge({ events }) {
-        const { color, text } = getGaugeDisplay(
+        const { level, text } = getGaugeDisplay(
           scan,
           events
             .filter(e => pattern.test(Utils.stripAnsi(e.e)))
@@ -215,7 +203,7 @@
             },
             React.createElement(
               "div",
-              { className: `toast ${mapColorToClass(color)}` },
+              { className: level },
               text
             )
           ),
@@ -235,7 +223,7 @@
       function getLogGauge({ events, globalFilter }) {
         const globalFilterPattern = new RegExp(globalFilter);
 
-        const { color, text } = getGaugeDisplay(
+        const { level, text } = getGaugeDisplay(
           scan,
           events
             .filter(e => gaugePattern.test(Utils.stripAnsi(e.e)))
@@ -252,7 +240,7 @@
             `${title}: ${text}`.toUpperCase()
           ),
           style: Utils.positionSpecToStyle(positionSpec),
-          className: `toast ${mapColorToClass(color)}`,
+          className: level,
           content: React.createElement(Components.ReadOnlyArea, {
             lines: events
               .filter(

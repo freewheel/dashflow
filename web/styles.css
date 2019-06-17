@@ -61,7 +61,7 @@
 .dash-header {
   box-sizing:border-box;
   padding: .5em;
-  height: 3em
+  height: 3em;
 }
 
 .dashboard-container {
@@ -107,9 +107,25 @@
 .dash-panel .title {
   font-size: 1.2em;
   font-weight: 500;
-  padding: .2em .5em;
+  padding: .3em .5em;
   height: 2em;
   cursor: default;
+  color: #fff;
+  display: block;
+  width: 100%;
+  background: #2b5fb4;
+}
+
+.dash-panel .title.success {
+  background: #00db87;
+}
+
+.dash-panel .title.warning {
+  background: #dcd007;
+}
+
+.dash-panel .title.error {
+  background: #db002f;
 }
 
 .dash-panel .content {
