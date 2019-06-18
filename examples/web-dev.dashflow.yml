@@ -1,0 +1,138 @@
+commands:
+  lint:
+    shell:
+      cwd: "./code"
+      cmd: "yarn --silent lint_min"
+  test:
+    shell:
+      cwd: "./code"
+      cmd: "yarn --silent test_min"
+
+streams:
+  webpack:
+    shell:
+      cwd: "./code"
+      cmd: "yarn --silent start"
+  rails-dev:
+    shell:
+      cwd: "../.."
+      cmd: 'rails s'
+  watch-code:
+    watch:
+      cwd: "./code"
+      glob: "**/*"
+  file-sync:
+    shell:
+      cwd: "../.."
+      cmd: "tail"
+
+workflows:
+  restart-file-sync:
+    match: "^stream:file-sync:.*:state:exited"
+    restart: file-sync
+
+  lint-then-test:
+    match: "^stream:webpack:.*Webpack build success"
+    parallel:
+      - command: lint
+      - command: test
+
+dashboards:
+  all-in-one:
+    - log:
+        title: Webpack
+        position: 0 0 50% 50%
+        filter: "^stream:webpack:.*"
+        gauge:
+          filter: "^stream:webpack:.*" scan:
+            when:
+              - pattern: "Webpack. Starting"
+                text: Running
+                level: warning
+              - pattern: "Webpack build success"
+                text: Passed
+                level: success
+              - pattern: "Webpack build error"
+                text: Failed
+                level: error
+              - pattern: "Failed to compile"
+                text: Failed
+                level: error
+            default:
+              text: Unknown
+    - log:
+        title: Lint
+        position: 0 50% 25% 100%
+        filter: "command:lint:stdout:.*"
+        gauge:
+          filter: "command:lint:state:.*"
+          scan:
+            when:
+              - pattern: started
+                text: Running
+                level: warning
+              - pattern: exited with 0
+                text: Passed
+                level: success
+              - pattern: exited with
+                text: Failed
+                level: error
+            default:
+              text: Unknown
+    - log:
+        title: Test
+        position: 25% 50% 50% 100%
+        filter: "command:test:stdout:.*"
+        gauge:
+          filter: "command:test:state:.*"
+          scan:
+            when:
+              - pattern: started
+                text: Running
+                level: warning
+              - pattern: exited with 0
+                text: Passed
+                level: success
+              - pattern: exited with
+                text: Failed
+                level: error
+            default:
+              text: Unknown
+    - log:
+        title: Rails Log
+        position: 50% 0 100% 80%
+        filter: "^stream:rails-dev:.*"
+    - log:
+        title: File Sync Log
+        position: 50% 80% 100% 100%
+        filter: "^stream:file-sync:.*"
+
+  frontend:
+    - log:
+        title: Webpack
+        position: 0 0 100% 100%
+        filter: "^stream:webpack:.*"
+
+  lint:
+    - log:
+        title: Lint
+        position: 0 0 100% 100%
+        filter: "command:lint:stdout:.*"
+
+  test:
+    - log:
+        title: Test
+        position: 0 0 100% 100%
+        filter: "command:test:stdout:.*"
+
+  rails:
+    - log:
+        title: Rails Log
+        position: 0 0 100% 100%
+        filter: "^stream:rails-dev:.*"
+
+  file-sync:
+    - log:
+        title: File Sync Log
+        position: 0 0 100% 100%
+        filter: "^stream:file-sync:.*"

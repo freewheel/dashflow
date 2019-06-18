@@ -1,0 +1,26 @@
+streams:
+  irb: irb
+  iex: iex
+  python:
+    shell: { cmd: python -i }
+  vim:
+    shell: { cmd: vim }
+
+dashboards:
+  all-in-one:
+    - log:
+        position: 0 0 50% 50%
+        title: VIM
+        filter: stream:vim:.*
+    - log:
+        position: 50% 0 100% 50%
+        title: Python
+        filter: stream:python:.*
+    - log:
+        position: 0 50% 50% 100%
+        title: IRB
+        filter: stream:irb:.*
+    - log:
+        position: 50% 50% 100% 100%
+        title: IEX
+        filter: stream:iex:.*
