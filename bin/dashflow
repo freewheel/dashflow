@@ -14,6 +14,7 @@ program
     "dashflow.yml"
   )
   .option("-p, --port <port>", "Specify custom http port", null)
+  .option("--verbose", "verbose output for errors", false)
   .on("--help", function() {
     process.stdout.write(`
 Examples
@@ -43,4 +44,16 @@ Examples
   })
   .parse(process.argv);
 
-start(program.config.split(","), program.port, program.args);
+function onError(err) {
+  if (program.verbose) {
+    process.stderr.write(`${err.stack}\n`);
+  } else {
+    process.stderr.write(err.message + "\n");
+  }
+
+  process.exit(1);
+}
+
+start(program.config.split(","), program.port, program.args, onError).catch(
+  onError
+);

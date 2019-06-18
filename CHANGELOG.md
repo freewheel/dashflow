@@ -1,3 +1,7 @@
+# 2019-06-18
+
+- improved error handling
+
 # 2019-06-17
 
 - updated dashboard look and feel
