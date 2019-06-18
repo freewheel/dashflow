@@ -214,13 +214,13 @@ dashboards:
           when:
             - pattern: started
               text: Running
-              color: yellow
+              level: warning
             - pattern: exited with 0
               text: Passed
-              color: green
+              level: success
             - pattern: exited with
               text: Failed
-              color: red
+              level: error
           default:
             text: Unknown
 ```
@@ -271,13 +271,13 @@ dashboards:
           when:
             - pattern: started
               text: Running
-              color: yellow
+              level: warning
             - pattern: exited with 0
               text: Passed
-              color: green
+              level: success
             - pattern: exited with
               text: Failed
-              color: red
+              level: error
           default:
             text: Unknown
     - gauge:
@@ -288,13 +288,13 @@ dashboards:
           when:
             - pattern: started
               text: Running
-              color: yellow
+              level: warning
             - pattern: exited with 0
               text: Passed
-              color: green
+              level: success
             - pattern: exited with
               text: Failed
-              color: red
+              level: error
           default:
             text: Unknown
     - log:
@@ -419,13 +419,13 @@ dashboardID:
           when:
             - pattern: started
               text: Running
-              color: yellow
+              level: warning
             - pattern: exited with 0
               text: Passed
-              color: green
+              level: success
             - pattern: exited with
               text: Failed
-              color: red
+              level: error
           default:
             text: Unknown
 
@@ -439,13 +439,13 @@ dashboardID:
         when:
           - pattern: <pattern 1>
             text: <status text 1>
-            color: <status color: green|yellow|red>
+            level: <status level: success|warning|error>
           - pattern: <pattern 2>
             text: <status text 2>
-            color: <status color: green|yellow|red>
+            level: <status level: success|warning|error>
         default:
           text: <default text>
-          color: <default color, default: grey>
+          level: <default level, default: none>
 
 # display static content
 dashboardID:

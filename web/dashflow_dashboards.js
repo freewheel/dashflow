@@ -136,7 +136,11 @@
                 textTransform: "uppercase",
               },
             },
-            React.createElement("div", { className: level }, text)
+            React.createElement(
+              "div",
+              { className: `toast toast-${level}` },
+              text
+            )
           ),
         });
       },
