@@ -1,24 +1,24 @@
-# dashflow
+# Dashflow
 
 ![logo](https://github.com/freewheel/dashflow/blob/master/guide_assets/dashflow-header.min.png)
 
 ![npm](https://img.shields.io/npm/v/dashflow.svg)
 
-A modern makefile alternative with local dev workflow support and beautiful dashboard.
+Automate local development tasks.
 
-## What can dashflow do for you
+## What can Dashflow do for you
 
-- Replace Makefile using a easy readable dashflow.yml YAML file
 - Run many commands in background and collect their stdout/stderr
-- Trigger new commands when output from those commands matches certain pattern
-- Has a beautiful dashboard which is served by the built-in HTTP server to visualize the status of those commands
+- Automatically trigger new commands when output from those commands matches certain pattern
+- Serve a web dashboard page to visualize the status of those commands
+- Replace Makefile using a easy readable dashflow.yml YAML file
 
 ![run processes](https://github.com/freewheel/dashflow/blob/master/guide_assets/interactive_shell.min.png)
 ![web dashboard](https://github.com/freewheel/dashflow/blob/master/guide_assets/web_dashflow.min.png)
 
 ## Installation
 
-Make sure you have [NodeJS](https://nodejs.org/en/download/) installed.
+Make sure you have installed [NodeJS](https://nodejs.org/en/download/).
 
 ```
 # install the package
@@ -40,13 +40,6 @@ $ dashflow -c service1/dashflow.yml -c service2/dashflow.yml
 # custom http port
 $ dashflow -p 9528
 
-# run with additional debug information
-$ DEBUG="app:*" dashflow
-$ DEBUG="events:*" dashflow
-$ DEBUG="stream:*" dashflow
-$ DEBUG="workflow:*" dashflow
-$ DEBUG="*" dashflow
-
 # use dashflow shell
 dashflow-shell~$ help
 
@@ -67,7 +60,7 @@ dashflow-shell~$ help
 
 Dashflow is modeled around some key concepts.
 
-Please take some time to understand those concepts so you can use this tool effectively.
+Please take some time to get familiar with those concepts so you can use the tool more effectively.
 
 ### Event
 
@@ -453,6 +446,10 @@ dashboardID:
       position: <rectangular: x1 y1 x2 y2>
       content: <static content string>
 ```
+
+## Contributors
+
+Your contributions are highly welcomed! Please check out [Contributor's Guide](./CONTRIBUTOR.md) for more details.
 
 ## Acknowledgement
 
