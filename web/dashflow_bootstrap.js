@@ -31,7 +31,7 @@
       this.appendEvents([event]);
     },
     appendEvents: function appendEvents(evts) {
-      this.events = this.events.concat(evts);
+      Array.prototype.push.apply(this.events, evts);
       this.notifySubscribers();
     },
     resetEvents: function resetEvents() {
