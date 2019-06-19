@@ -102,6 +102,7 @@
   display: block;
   width: 100%;
   background: #2b5fb4;
+  text-transform: uppercase;
 }
 
 .dash-panel .title.success {
@@ -114,6 +115,19 @@
 
 .dash-panel .title.error {
   background: #db002f;
+}
+
+.dash-panel .title .pill {
+  background: #0005;
+  color: #FFF;
+  font-size: .6em;
+  margin: .25em .25em;
+  height: 2em;
+  width: 8em;
+  padding: 3px 12px;
+  float: right;
+  text-align: center;
+  border-radius: 3px;
 }
 
 .dash-panel .content {
