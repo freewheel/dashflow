@@ -9,13 +9,14 @@
       .map(evt => `${evt.t} ${Utils.trimLineBreaks(Utils.stripAnsi(evt.e))}`);
 
     return React.createElement(Components.Panel, {
-      title: React.createElement(
+      title: 'Events',
+      pill: React.createElement(
         "span",
         {
-          className: "tooltip tooltip-right",
+          className: "tooltip tooltip-left",
           "data-tooltip": "showing latest 200 events",
         },
-        `Events: ${events.length} in total`
+        `${events.length} Events`
       ),
       style: {
         top: 0,
@@ -158,7 +159,7 @@
         const globalFilterPattern = new RegExp(globalFilter);
 
         let className = "";
-        let titleText = title;
+        let gaugeText = "";
 
         if (gauge) {
           const gaugePattern = new RegExp(gauge.filter);
@@ -170,8 +171,8 @@
               .map(({ e }) => Utils.stripAnsi(e))
           );
 
+          gaugeText = text;
           className = level;
-          titleText += `: ${text}`;
         }
 
         return React.createElement(Components.Panel, {
@@ -181,8 +182,9 @@
               className: "tooltip tooltip-right",
               "data-tooltip": `filter: "${logFilter}"`,
             },
-            titleText
+            title
           ),
+          pill: gaugeText,
           style: Utils.positionSpecToStyle(positionSpec),
           className,
           content: React.createElement(Components.ReadOnlyArea, {

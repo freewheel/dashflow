@@ -84,7 +84,7 @@
     };
   };
 
-  const Panel = ({ title, content, style, className }) => {
+  const Panel = ({ title, pill, content, style, className }) => {
     const { top, left, width, height } = style;
 
     return React.createElement(
@@ -100,7 +100,16 @@
             {
               className: `${className} title`,
             },
-            title
+            [
+              title,
+              pill && React.createElement(
+                "span",
+                {
+                  className: 'pill'
+                },
+                pill
+              )
+            ]
           ),
         React.createElement(
           "div",
