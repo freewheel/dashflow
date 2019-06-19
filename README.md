@@ -4,6 +4,8 @@
 
 ![npm](https://img.shields.io/npm/v/dashflow.svg)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/21173937-497e-4a6c-ba6f-0b8ffa94ca18/deploy-status)](https://app.netlify.com/sites/dashflow/deploys)
+
 Automate local development tasks.
 
 ## What can Dashflow do for you

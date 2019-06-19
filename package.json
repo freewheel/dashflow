@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "lint": "eslint lib test web/dashflow_*.js && echo 'lint passed\n'",
-    "start": "dashflow",
+    "start": "bin/dashflow",
     "format": "prettier --write \"lib/**/*.js\" && prettier --write \"web/dashflow_*.js\"",
     "test": "mocha"
   },
