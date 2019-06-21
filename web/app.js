@@ -1,5 +1,10 @@
 /* eslint-env browser */
-/* global React, ReactDOM, Utils, Components, Dashboards, io, jsyaml */
+/* global React, ReactDOM, io, jsyaml */
+
+import { Utils } from './utils.js';
+import { Components } from './components/index.js';
+import { Dashboards } from './dashboards/index.js';
+
 (function bootstrap() {
   const notifyThrottle = Utils.throttleFactory(500);
 
