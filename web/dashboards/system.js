@@ -33,26 +33,26 @@ const Events = ({ events, globalFilter }) => {
 };
 
 const DashboardsConfig = ({ dashboardsYAML, updateDashboardsYAML }) =>
-React.createElement(Components.Panel, {
-  title: React.createElement(
-    "span",
-    {
-      className: "tooltip tooltip-right",
-      "data-tooltip": "editable, change will be applied",
+  React.createElement(Components.Panel, {
+    title: React.createElement(
+      "span",
+      {
+        className: "tooltip tooltip-right",
+        "data-tooltip": "editable, change will be applied",
+      },
+      "Dashboards Config"
+    ),
+    style: {
+      top: "50%",
+      left: 0,
+      width: "100%",
+      height: "50%",
     },
-    "Dashboards Config"
-  ),
-  style: {
-    top: "50%",
-    left: 0,
-    width: "100%",
-    height: "50%",
-  },
-  content: React.createElement(Components.EditableArea, {
-    value: dashboardsYAML,
-    onChange: updateDashboardsYAML,
-  }),
-});
+    content: React.createElement(Components.EditableArea, {
+      value: dashboardsYAML,
+      onChange: updateDashboardsYAML,
+    }),
+  });
 
 export const SystemDashboard = {
   title: "SYSTEM",

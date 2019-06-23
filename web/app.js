@@ -5,7 +5,7 @@ import { Utils } from './utils.js';
 import { Components } from './components/index.js';
 import { Dashboards } from './dashboards/index.js';
 
-(function bootstrap() {
+(function app() {
   const notifyThrottle = Utils.throttleFactory(500);
 
   const appStore = {

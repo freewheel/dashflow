@@ -32,8 +32,9 @@ export class ReadOnlyArea extends React.Component {
   render() {
     const { lines } = this.props;
 
+    const textareaRef = this.textareaRef;
     return React.createElement("textarea", {
-      ref: this.textareaRef,
+      ref: textareaRef,
       className: "read-only-area",
       readOnly: true,
       value: lines.join(TEXTAREA_LINE_BREAK),
@@ -41,12 +42,15 @@ export class ReadOnlyArea extends React.Component {
   }
 }
 
-export const EditableArea = ({ value, onChange }) =>
-  React.createElement("textarea", {
-    ref: this.textareaRef,
+export const EditableArea = ({ value, onChange }) => {
+  // const textareaRef = this.textareaRef;
+  return React.createElement("textarea", {
+    // ref: textareaRef,
     className: "editable-area",
     value,
     onChange: event => {
       onChange(event.target.value);
     },
   });
+}
+
