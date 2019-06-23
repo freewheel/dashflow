@@ -19,9 +19,9 @@
     "README.md"
   ],
   "scripts": {
-    "lint": "eslint lib test web/dashflow_*.js && echo 'lint passed\n'",
+    "lint": "eslint lib test web/**/*.js --ignore-pattern web/lib/**/*.js && echo 'lint passed\n'",
     "start": "bin/dashflow",
-    "format": "prettier --write \"lib/**/*.js\" && prettier --write \"web/dashflow_*.js\"",
+    "format": "prettier --write \"lib/**/*.js\" && prettier --write \"web/**/*.js\" --ignore-pattern \"web/lib/**/*.js\"",
     "test": "mocha"
   },
   "devDependencies": {
