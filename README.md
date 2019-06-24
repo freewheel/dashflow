@@ -16,7 +16,7 @@ Automate local development tasks.
 - Replace Makefile using a easy readable dashflow.yml YAML file
 
 ![run processes](https://github.com/freewheel/dashflow/blob/master/guide_assets/interactive_shell.min.png)
-![web dashboard](https://github.com/freewheel/dashflow/blob/master/guide_assets/web_dashflow.min.png)
+![web dashboard](https://github.com/freewheel/dashflow/blob/master/guide_assets/web_dashboard.gif)
 
 ## Installation
 
