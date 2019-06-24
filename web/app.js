@@ -1,5 +1,5 @@
 /* eslint-env browser */
-/* global React, ReactDOM, io, jsyaml */
+/* global React, ReactDOM, jsyaml */
 
 import { Utils } from './utils.js';
 import { Components } from './components/index.js';
@@ -88,48 +88,7 @@ import { Dashboards } from './dashboards/index.js';
     },
   };
 
-  function createSocket(store) {
-    const socket = io();
-
-    function init() {
-      socket.emit("get_dashboards_config");
-
-      socket.emit("catchup");
-    }
-
-    socket.on("get_dashboards_config", function(dashboards) {
-      try {
-        store.clearErrorMessages();
-        store.updateDashboards(dashboards);
-        store.updateCurrentDashboardTitle(null);
-      } catch (err) {
-        store.addErrorMessage(err.message);
-      }
-    });
-
-    socket.on("catchup_batch", function(messages) {
-      store.appendEvents(messages);
-    });
-
-    socket.on("catchup_done", function() {
-      socket.emit("delta");
-    });
-
-    socket.on("delta", function(message) {
-      store.appendEvent(message);
-    });
-
-    socket.on("reconnect", function() {
-      store.resetEvents();
-      init();
-    });
-
-    init();
-
-    return socket;
-  }
-
-  createSocket(appStore);
+  window.appStore = appStore;
 
   ReactDOM.render(
     React.createElement(Components.App, { store: appStore }),
