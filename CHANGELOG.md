@@ -1,7 +1,3 @@
-# 2019-06-19
-
-- fixed bug that occasionally we lost some events
-
 # 2019-06-18
 
 - improved error handling
