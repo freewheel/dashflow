@@ -2,6 +2,9 @@
 // this page is for demo site
 // new events will be generated every a few seconds
 // so the site will look dynamic
+
+import { appStore, render } from './app.js';
+
 (function connect() {
   function connectToDemo(store) {
     const dashboards = {
@@ -285,5 +288,6 @@
     });
   }
 
-  connectToDemo(window.appStore);
+  connectToDemo(appStore);
+  render();
 })();
