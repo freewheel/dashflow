@@ -1,3 +1,7 @@
+# 2019-06-25
+
+- fixed interactive shell bug: not printing out previous logs when attach/tail to a stream/workflow
+
 # 2019-06-24
 
 - reverted a bug fix of missing events which caused more issues.
