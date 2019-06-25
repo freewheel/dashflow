@@ -1,0 +1,95 @@
+resource_types:
+  - name: pull-request
+    type: docker-image
+    source:
+      repository: teliaoss/github-pr-resource
+
+resources:
+  - name: dashflow-pr
+    type: pull-request
+    check_every: 1m
+    source:
+      repository: freewheel/dashflow
+      access_token: ((dashflow-pr-access-token))
+
+jobs:
+  - name: lint
+    plan:
+      - get: dashflow-pr
+        trigger: true
+        version: every
+      - put: dashflow-pr
+        params:
+          path: dashflow-pr
+          context: Lint
+          status: PENDING
+
+      - task: run-lint
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: { repository: node, tag: 11 }
+          inputs:
+            - name: dashflow-pr
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                cd dashflow-pr
+                yarn install
+                yarn --silent lint
+        on_success:
+          put: dashflow-pr
+          params:
+            path: dashflow-pr
+            context: Lint
+            status: SUCCESS
+        on_failure:
+          put: dashflow-pr
+          params:
+            path: dashflow-pr
+            context: Lint
+            status: FAILURE
+
+  - name: test
+    plan:
+      - get: dashflow-pr
+        trigger: true
+        version: every
+      - put: dashflow-pr
+        params:
+          path: dashflow-pr
+          context: Test
+          status: PENDING
+
+      - task: run-test
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: { repository: node, tag: 11 }
+          inputs:
+            - name: dashflow-pr
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                cd dashflow-pr
+                yarn install
+                yarn --silent test --no-color --verbose
+        on_success:
+          put: dashflow-pr
+          params:
+            path: dashflow-pr
+            context: Test
+            status: SUCCESS
+        on_failure:
+          put: dashflow-pr
+          params:
+            path: dashflow-pr
+            context: Test
+            status: FAILURE
+
