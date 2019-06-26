@@ -1,0 +1,113 @@
+resource_types:
+  - name: slack-notification
+    type: docker-image
+    source:
+      repository: cfcommunity/slack-notification-resource
+
+resources:
+  - name: dashflow
+    type: git
+    source:
+      uri: https://github.com/freewheel/dashflow.git
+      branch: master
+
+  - name: slack
+    type: slack-notification
+    source:
+      url: ((slack-webhook-url))
+
+jobs:
+  - name: lint
+    plan:
+      - get: dashflow
+        trigger: true
+
+      - task: run-lint
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: { repository: node, tag: 11 }
+          inputs:
+            - name: dashflow
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                cd dashflow
+                yarn install
+                yarn --silent lint
+        on_failure:
+          put: slack
+          params:
+            text: |
+              Lint failed for dashflow master branch(${ATC_EXTERNAL_URL}/builds/${BUILD_ID}), please investigate.
+
+  - name: test
+    plan:
+      - get: dashflow
+        trigger: true
+
+      - task: run-test
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: { repository: node, tag: 11 }
+          inputs:
+            - name: dashflow
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                cd dashflow
+                yarn install
+                yarn --silent test --no-color --verbose
+        on_failure:
+          put: slack
+          params:
+            text: |
+              Test failed for dashflow master branch(${ATC_EXTERNAL_URL}/builds/${BUILD_ID}), please investigate.
+
+  - name: publish-npm-package
+    plan:
+      - get: dashflow
+        trigger: true
+        passed:
+          - lint
+          - test
+
+      - task: publish-dev
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: { repository: node, tag: 11 }
+          inputs:
+            - name: dashflow
+          params:
+            NPM_PUBLISH_TOKEN: ((npm-publish-token))
+          run:
+            path: sh
+            args:
+              - -ec
+              - |
+                NPM_CURRENT_VERSION=$(npm view dashflow dist-tags.latest)
+                CODE_VERSION=$(cat dashflow/package.json | grep version | awk 'BEGIN { FS = "\"" }; { print $4 }')
+
+                if ! [ "$CODE_VERSION" = "$NPM_CURRENT_VERSION" ]; then
+                  cd dashflow
+                  yarn install
+                  echo "publishing dashflow package to npm"
+                  echo "//registry.npmjs.org/:_authToken=${NPM_PUBLISH_TOKEN}" > .npmrc
+                  npm publish
+                else
+                  echo "skip publishing since the version is the same as in npm registry"
+                fi
+        on_failure:
+          put: slack
+          params:
+            text: |
+              Publish failed for dashflow(${ATC_EXTERNAL_URL}/builds/${BUILD_ID}), please investigate.

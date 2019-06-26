@@ -6,7 +6,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/21173937-497e-4a6c-ba6f-0b8ffa94ca18/deploy-status)](https://app.netlify.com/sites/dashflow/deploys)
 
-Automate local development tasks.
+Automate local development tasks. [See It In Action](https://dashflow.netlify.com/)
 
 ## What can Dashflow do for you
 
@@ -15,8 +15,8 @@ Automate local development tasks.
 - Serve a web dashboard page to visualize the status of those commands
 - Replace Makefile using a easy readable dashflow.yml YAML file
 
-![run processes](https://github.com/freewheel/dashflow/blob/master/guide_assets/interactive_shell.min.png)
-![web dashboard](https://github.com/freewheel/dashflow/blob/master/guide_assets/web_dashflow.min.png)
+![run processes](https://raw.githubusercontent.com/freewheel/dashflow/master/guide_assets/interactive_shell.png)
+![web dashboard](https://raw.githubusercontent.com/freewheel/dashflow/master/guide_assets/web_dashboard.gif) <!-- .element width="100%" -->
 
 ## Installation
 
