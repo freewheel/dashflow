@@ -1,6 +1,7 @@
 # 2019-06-28
 
 - added node 12 support
+- fixed the issue that one off command cannot receive user input
 
 # 2019-06-25
 
