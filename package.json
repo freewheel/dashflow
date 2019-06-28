@@ -37,7 +37,7 @@
     "columnify": "^1.5.4",
     "commander": "^2.19.0",
     "js-yaml": "^3.12.2",
-    "node-pty": "^0.8.1",
+    "node-pty": "https://github.com/microsoft/node-pty.git#04445ed76f90b4f56a190982ea2d4fcdd22a0ee7",
     "portfinder": "^1.0.20",
     "serve-handler": "^5.0.8",
     "socket.io": "^2.2.0",

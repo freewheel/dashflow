@@ -1,3 +1,7 @@
+# 2019-06-28
+
+- added node 12 support
+
 # 2019-06-25
 
 - fixed interactive shell bug: not printing out previous logs when attach/tail to a stream/workflow
