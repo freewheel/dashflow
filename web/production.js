@@ -1,5 +1,8 @@
 /* eslint-env browser */
 /* global io */
+
+import { createStore, render } from "./app.js";
+
 (function connect() {
   function connectToSocket(store) {
     const socket = io();
@@ -42,5 +45,7 @@
     return socket;
   }
 
-  connectToSocket(window.appStore);
+  const appStore = createStore();
+  connectToSocket(appStore);
+  render(appStore);
 })();

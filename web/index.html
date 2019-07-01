@@ -1,27 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" style="height: 100%">
   <head>
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" sizes="32x32" href="/logo/dashflow-icon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/logo/dashflow-icon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/logo/dashflow-icon-16x16.png">
-    <meta name="theme-color" content="#ffffff">
+    <meta charset="utf-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/logo/dashflow-icon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/logo/dashflow-icon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/logo/dashflow-icon-16x16.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
     <title>Dashflow</title>
     <link rel="stylesheet" href="lib/spectre.min.css" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body style="height: 100%">
-    <div id="app" style="height: 100%; display: flex; flex-direction: column;"></div>
+    <div
+      id="app"
+      style="height: 100%; display: flex; flex-direction: column;"
+    ></div>
 
     <script src="lib/react.production.min.js"></script>
     <script src="lib/react-dom.production.min.js"></script>
     <script src="lib/js-yaml.min.js"></script>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/dashflow_utils.js"></script>
-    <script src="/dashflow_components.js"></script>
-    <script src="/dashflow_dashboards.js"></script>
-    <script src="/dashflow_bootstrap.js"></script>
-    <script src="/dashflow_connection.js"></script>
+    <script src="/production.js" type="module"></script>
   </body>
 </html>

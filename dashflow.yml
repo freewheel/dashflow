@@ -19,7 +19,7 @@ streams:
   watch-test:
     watch: { glob: "**/*.js", cwd: test }
   watch-web:
-    watch: { glob: "dashflow_*.js", cwd: web }
+    watch: { glob: "web/**/*.js", cwd: web }
 
 workflows:
   initial-lint:

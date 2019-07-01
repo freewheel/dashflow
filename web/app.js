@@ -1,9 +1,14 @@
 /* eslint-env browser */
-/* global React, ReactDOM, Utils, Components, Dashboards, jsyaml */
-(function bootstrap() {
-  const notifyThrottle = Utils.throttleFactory(500);
+/* global React, ReactDOM, jsyaml */
 
-  const appStore = {
+import { Utils } from "./utils.js";
+import { Components } from "./components/index.js";
+import { Dashboards } from "./dashboards/index.js";
+
+const notifyThrottle = Utils.throttleFactory(500);
+
+export function createStore() {
+  return {
     dashboards: [],
     dashboardsYAML: null,
     currentDashboardTitle: null,
@@ -82,11 +87,11 @@
       this.notifySubscribers(true);
     },
   };
+}
 
-  window.appStore = appStore;
-
+export function render(store) {
   ReactDOM.render(
-    React.createElement(Components.App, { store: appStore }),
+    React.createElement(Components.App, { store }),
     document.getElementById("app")
   );
-})();
+}
