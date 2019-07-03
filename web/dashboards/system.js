@@ -3,8 +3,8 @@
 import { Components } from "../components/index.js";
 import { Utils } from "../utils.js";
 
-const Events = ({ events, globalFilter }) => {
-  const globalFilterPattern = new RegExp(globalFilter);
+const Events = ({ events, globalFilterValue, globalFilterValid }) => {
+  const globalFilterPattern = globalFilterValid ? new RegExp(globalFilterValue) : new RegExp('');
 
   const eventsAfterFilter = events
     .filter(evt => globalFilterPattern.test(evt.e))

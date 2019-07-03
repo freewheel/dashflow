@@ -4,7 +4,8 @@ export const Header = ({
   dashboards,
   currentDashboardTitle,
   updateCurrentDashboardTitle,
-  globalFilter,
+  globalFilterValue,
+  globalFilterValid,
   updateGlobalFilter,
 }) => {
   return React.createElement(
@@ -60,11 +61,11 @@ export const Header = ({
         { className: "navbar-section" },
         React.createElement(
           "div",
-          { className: "filter" },
+          { className: `filter ${ !globalFilterValid ? 'invalid' : ''}` },
           React.createElement("input", {
-            className: "input",
+            className: 'input',
             type: "text",
-            value: globalFilter,
+            value: globalFilterValue,
             onChange: event => {
               updateGlobalFilter(event.target.value);
             },

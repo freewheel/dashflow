@@ -2,7 +2,8 @@
 
 export const Dashboard = ({
   events,
-  globalFilter,
+  globalFilterValue,
+  globalFilterValid,
   pannels,
   dashboardsYAML,
   updateDashboardsYAML,
@@ -16,7 +17,8 @@ export const Dashboard = ({
       pannels.map(renderer =>
         React.createElement(renderer, {
           events,
-          globalFilter,
+          globalFilterValue,
+          globalFilterValid,
           dashboardsYAML,
           updateDashboardsYAML,
         })
