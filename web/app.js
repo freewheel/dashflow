@@ -12,7 +12,8 @@ export function createStore() {
     dashboards: [],
     dashboardsYAML: null,
     currentDashboardTitle: null,
-    globalFilter: "",
+    globalFilterValue: "",
+    globalFilterValid: true,
     events: [],
     errorMessages: [],
     subscribers: [],
@@ -56,7 +57,16 @@ export function createStore() {
       this.notifySubscribers(true);
     },
     updateGlobalFilter: function updateGlobalFilter(filter) {
-      this.globalFilter = filter;
+      this.globalFilterValue = filter;
+
+      try {
+        new RegExp(filter);
+        this.globalFilterValid = true;
+      } catch (e) {
+        this.globalFilterValid = false;
+      }
+
+      console.log({ valid: this.globalFilterValid, value: this.globalFilterValue });
 
       this.notifySubscribers(true);
     },

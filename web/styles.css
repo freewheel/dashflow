@@ -76,6 +76,30 @@
   -webkit-transition: all .6s;
 }
 
+.dash-header .filter:focus-within {
+  background: #BBB;
+}
+
+.dash-header .filter .input:focus {
+  border-bottom: 2px solid #BBB;
+}
+
+.dash-header .filter.invalid {
+  background: #db002f;
+}
+
+.dash-header .filter.invalid .input {
+  border-bottom: 2px solid #db002f;
+}
+
+.dash-header .filter.invalid:focus-within {
+  background: #db002f;
+}
+
+.dash-header .filter.invalid .input:focus {
+  border-bottom: 2px solid #db002f;
+}
+
 .dash-header .filter .input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #DDD;
   opacity: 1; /* Firefox */
@@ -90,14 +114,6 @@
 .dash-header .filter .input::-ms-input-placeholder { /* Microsoft Edge */
   color: #DDD;
   -webkit-transition: all .6s;
-}
-
-.dash-header .filter:focus-within {
-  background: #BBB;
-}
-
-.dash-header .filter .input:focus {
-  border-bottom: 2px solid #BBB;
 }
 
 .dash-header .filter .input:focus::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

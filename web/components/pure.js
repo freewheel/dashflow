@@ -37,5 +37,6 @@ export const pure = (BaseComponent, keys = undefined) => {
 export const PureHeader = pure(Header, [
   "dashboards",
   "currentDashboardTitle",
-  "globalFilter",
+  "globalFilterValue",
+  "globalFilterValid",
 ]);

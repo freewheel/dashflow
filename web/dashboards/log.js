@@ -8,8 +8,8 @@ export function log(title, positionSpec, logFilter, gauge, limit = 500) {
     const logPattern = new RegExp(logFilter);
 
     return Components.pure(
-      function getLogGauge({ events, globalFilter }) {
-        const globalFilterPattern = new RegExp(globalFilter);
+      function getLogGauge({ events, globalFilterValue, globalFilterValid }) {
+        const globalFilterPattern = globalFilterValid ? new RegExp(globalFilterValue) : new RegExp('');
 
         let className = "";
         let gaugeText = "";
@@ -55,6 +55,6 @@ export function log(title, positionSpec, logFilter, gauge, limit = 500) {
           }),
         });
       },
-      ["events", "globalFilter"]
+      ["events", "globalFilterValue", "globalFilterValid"]
     );
   }
