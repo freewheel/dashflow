@@ -90,6 +90,7 @@
 
 .dash-header .filter.invalid .input {
   border-bottom: 2px solid #db002f;
+  color: #db002f;
 }
 
 .dash-header .filter.invalid:focus-within {
