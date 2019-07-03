@@ -37,18 +37,84 @@
   background: #666;
 }
 
-/* COMPONENTS */
+/* APP */
 
 .app {
   height: 100%;
   width: 100%;
 }
 
+/* HEADER */
+
 .dash-header {
   box-sizing:border-box;
   padding: .5em;
   height: 3em;
 }
+
+.dash-header .filter {
+  outline: 0px;
+  width: 300px;
+  height: 6px;
+  background: #DDD;
+  margin-top: 26px;
+  -webkit-transition: all .6s;
+}
+
+.dash-header .filter .input {
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 2px solid #DDD;
+  outline: none;
+  width: 296px;
+  background: #FFF;
+  margin-left: 2px;
+  margin-top: -28px;
+  padding: 4px 8px;
+  position: absolute;
+  -webkit-transition: all .6s;
+}
+
+.dash-header .filter .input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #DDD;
+  opacity: 1; /* Firefox */
+  -webkit-transition: all .6s;
+}
+
+.dash-header .filter .input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #DDD;
+  -webkit-transition: all .6s;
+}
+
+.dash-header .filter .input::-ms-input-placeholder { /* Microsoft Edge */
+  color: #DDD;
+  -webkit-transition: all .6s;
+}
+
+.dash-header .filter:focus-within {
+  background: #BBB;
+}
+
+.dash-header .filter .input:focus {
+  border-bottom: 2px solid #BBB;
+}
+
+.dash-header .filter .input:focus::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #BBB;
+  opacity: 1; /* Firefox */
+}
+
+.dash-header .filter .input:focus:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #BBB;
+}
+
+.dash-header .filter .input:focus::-ms-input-placeholder { /* Microsoft Edge */
+  color: #BBB;
+}
+
+
+/* DASHBOARD */
 
 .dashboard-container {
   padding: 2px;
@@ -83,6 +149,8 @@
   padding: 0.5em;
   color: inherit;
 }
+
+/* PANEL */
 
 .dash-panel {
   box-sizing: border-box;
