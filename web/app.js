@@ -66,8 +66,6 @@ export function createStore() {
         this.globalFilterValid = false;
       }
 
-      console.log({ valid: this.globalFilterValid, value: this.globalFilterValue });
-
       this.notifySubscribers(true);
     },
     updateCurrentDashboardTitle: function updateCurrentDashboardTitle(title) {
