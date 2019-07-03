@@ -60,15 +60,15 @@ export const Header = ({
         { className: "navbar-section" },
         React.createElement(
           "div",
-          { className: "input-group input-inline" },
+          { className: "filter" },
           React.createElement("input", {
-            className: "form-input",
+            className: "input",
             type: "text",
             value: globalFilter,
             onChange: event => {
               updateGlobalFilter(event.target.value);
             },
-            placeholder: "filter by regexp",
+            placeholder: "REGEX FILTER",
           })
         )
       ),
