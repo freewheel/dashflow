@@ -36,7 +36,7 @@ jobs:
               - -exc
               - |
                 cd dashflow
-                yarn install
+                yarn install --network-concurrency 1
                 yarn --silent lint
         on_failure:
           put: slack
@@ -63,7 +63,7 @@ jobs:
               - -exc
               - |
                 cd dashflow
-                yarn install
+                yarn install --network-concurrency 1
                 yarn --silent test --no-color --verbose
         on_failure:
           put: slack
@@ -99,7 +99,7 @@ jobs:
 
                 if ! [ "$CODE_VERSION" = "$NPM_CURRENT_VERSION" ]; then
                   cd dashflow
-                  yarn install
+                  yarn install --network-concurrency 1
                   echo "publishing dashflow package to npm"
                   echo "//registry.npmjs.org/:_authToken=${NPM_PUBLISH_TOKEN}" > .npmrc
                   npm publish

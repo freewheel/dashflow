@@ -38,7 +38,7 @@ jobs:
               - -exc
               - |
                 cd dashflow-pr
-                yarn install
+                yarn install --network-concurrency 1
                 yarn --silent lint
         on_success:
           put: dashflow-pr
@@ -78,7 +78,7 @@ jobs:
               - -exc
               - |
                 cd dashflow-pr
-                yarn install
+                yarn install --network-concurrency 1
                 yarn --silent test --no-color --verbose
         on_success:
           put: dashflow-pr
