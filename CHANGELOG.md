@@ -2,6 +2,7 @@
 
 - supported alias for dashboard widget position
 - upgraded depended packages
+- added `ignore` option for watch stream
 
 # 2019-06-28
 
