@@ -1,5 +1,11 @@
 /* GENERAL */
 
+html, body {
+  margin: 0 auto;
+  top: 0;
+  font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue"
+}
+
 /* vietnamese */
 @font-face {
   font-family: 'Inconsolata';
@@ -180,14 +186,12 @@
 .dash-panel .title {
   font-size: 1.2em;
   font-weight: 500;
-  padding: .3em .5em;
-  height: 2em;
   cursor: default;
   color: #fff;
   display: block;
-  width: 100%;
   background: #2b5fb4;
   text-transform: uppercase;
+  height: 1.8em;
 }
 
 .dash-panel .title.success {
@@ -202,17 +206,22 @@
   background: #db002f;
 }
 
+.dash-panel .title .text {
+  float: left;
+  padding: 6px 0 0 12px;
+}
+
 .dash-panel .title .pill {
   background: #0005;
   color: #FFF;
   font-size: .6em;
-  margin: .25em .25em;
-  height: 2em;
-  width: 8em;
-  padding: 3px 12px;
+  margin: 0.4em .4em;
+  padding: .6em 12px;
+  vertical-align: middle;
   float: right;
   text-align: center;
   border-radius: 3px;
+  width: 6em;
 }
 
 .dash-panel .content {
