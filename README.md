@@ -293,11 +293,11 @@ dashboards:
           default:
             text: Unknown
     - log:
-        position: 0 50% 50% 100%
+        position: quadrant/bottom-left
         title: Lint
         filter: command:lint:.*
     - log:
-        position: 50% 50% 100% 100%
+        position: quadrant/bottom-right
         title: Test
         filter: command:test:.*
 ```
@@ -398,14 +398,14 @@ workflowID:
 # show a subset of all event streams by applying a filter
 dashboardID:
   - log:
-      position: <rectangular: x1 y1 x2 y2>
+      position: <rectangular: x1 y1 x2 y2> OR <position-alias>
       title: <title string>
       filter: <filter pattern>
 
 # show a console log with a header gauge
 dashboardID:
   - log:
-      position: <rectangular: x1 y1 x2 y2>
+      position: <rectangular: x1 y1 x2 y2> OR <position-alias>
       title: <title string>
       filter: <log filter pattern>
       gauge:
@@ -427,7 +427,7 @@ dashboardID:
 # show status text by running some calculations
 dashboardID:
   - gauge:
-      position: <rectangular: x1 y1 x2 y2>
+      position: <rectangular: x1 y1 x2 y2> OR <position-alias>
       title: <title string>
       filter: <filter pattern>
       scan:
@@ -445,8 +445,102 @@ dashboardID:
 # display static content
 dashboardID:
   - banner:
-      position: <rectangular: x1 y1 x2 y2>
+      position: <rectangular: x1 y1 x2 y2> OR <position-alias>
       content: <static content string>
+```
+
+## Reference
+
+### Position Aliases
+
+```
++----------------------------------------+
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
++----------------------------------------+
+
+              fullscreen
+```
+
+```
++----------------------+-----------------------+
+|                      |                       |
+|                      |                       |
+|                      |                       |
+| quadrant/top-left    |   quadrant/top-right  |
+|        OR            |          OR           |
+|     quadrant/2       |       quadrant/1      |
+|                      |                       |
++----------------------------------------------+
+|                      |                       |
+|                      |                       |
+|                      |                       |
+| quadrant/bottom-left | quadrant/bottom-right |
+|        OR            |        OR             |
+|    quadrant/3        |      quadrant/4       |
+|                      |                       |
+|                      |                       |
++----------------------+-----------------------+
+
+                  quadrant
+```
+
+```
++----------------------------------------+
+|                                        |
+|                                        |
+|                                        |
+|              quadrant/top              |
+|                                        |
+|                                        |
+|                                        |
++----------------------------------------+
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|             quadrant/bottom            |
+|                                        |
+|                                        |
+|                                        |
++----------------------------------------+
+
+                  quadrant
+```
+
+```
++-------------------+--------------------+
+|                   |                    |
+|                   |                    |
+|                   |                    |
+|                   |                    |
+|                   |                    |
+|                   |                    |
+|    quadrant/left  |    quadrant/right  |
+|                   |                    |
+|                   |                    |
+|                   |                    |
+|                   |                    |
+|                   |                    |
+|                   |                    |
+|                   |                    |
++-------------------+--------------------+
+
+                  quadrant
 ```
 
 ## Contributors

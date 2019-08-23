@@ -41,7 +41,7 @@ dashboards:
   all-in-one:
     - log:
         title: Webpack
-        position: 0 0 50% 50%
+        position: quadrant/top-left
         filter: "^stream:webpack:.*"
         gauge:
           filter: "^stream:webpack:.*" scan:
@@ -110,29 +110,29 @@ dashboards:
   frontend:
     - log:
         title: Webpack
-        position: 0 0 100% 100%
+        position: fullscreen
         filter: "^stream:webpack:.*"
 
   lint:
     - log:
         title: Lint
-        position: 0 0 100% 100%
+        position: fullscreen
         filter: "command:lint:stdout:.*"
 
   test:
     - log:
         title: Test
-        position: 0 0 100% 100%
+        position: fullscreen
         filter: "command:test:stdout:.*"
 
   rails:
     - log:
         title: Rails Log
-        position: 0 0 100% 100%
+        position: fullscreen
         filter: "^stream:rails-dev:.*"
 
   file-sync:
     - log:
         title: File Sync Log
-        position: 0 0 100% 100%
+        position: fullscreen
         filter: "^stream:file-sync:.*"
