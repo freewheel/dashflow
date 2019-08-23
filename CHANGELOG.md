@@ -1,3 +1,7 @@
+# 2019-08-23
+
+- upgraded depended packages
+
 # 2019-06-28
 
 - added node 12 support
