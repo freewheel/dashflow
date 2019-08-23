@@ -47,7 +47,7 @@ workflows:
 dashboards:
   all-in-one:
     - log:
-        position: 0 0 50% 100%
+        position: quadrant/left
         title: Lint
         filter: command:lint:.*
         gauge:
@@ -66,7 +66,7 @@ dashboards:
             default:
               text: Unknown
     - log:
-        position: 50% 0 100% 100%
+        position: quadrant/right
         title: Test
         filter: command:test:.*
         gauge:
@@ -86,7 +86,7 @@ dashboards:
               text: Unknown
   lint-only:
     - log:
-        position: 0 0 100% 100%
+        position: fullscreen
         title: Lint
         filter: command:lint:.*
         gauge:
@@ -106,7 +106,7 @@ dashboards:
               text: Unknown
   test-only:
     - log:
-        position: 0 0 100% 100%
+        position: fullscreen
         title: Test
         filter: command:test:.*
         gauge:

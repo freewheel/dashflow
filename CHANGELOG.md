@@ -1,5 +1,6 @@
 # 2019-08-23
 
+- supported alias for dashboard widget position
 - upgraded depended packages
 
 # 2019-06-28
