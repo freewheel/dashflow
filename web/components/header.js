@@ -11,54 +11,54 @@ export const Header = ({
   return React.createElement(
     "header",
     {
-      className: "navbar dash-header",
+      className: "dash-header",
     },
     [
-      React.createElement(
-        "section",
-        { className: "navbar-section" },
-        dashboards.map(({ title }) => {
-          const active = title === currentDashboardTitle;
-          const onClick = event => {
-            updateCurrentDashboardTitle(title);
+      // React.createElement(
+      //   "section",
+      //   { className: "navbar-section" },
+      //   dashboards.map(({ title }) => {
+      //     const active = title === currentDashboardTitle;
+      //     const onClick = event => {
+      //       updateCurrentDashboardTitle(title);
 
-            event.preventDefault();
-          };
+      //       event.preventDefault();
+      //     };
 
-          return React.createElement(
-            "a",
-            {
-              key: title,
-              href: `#${title}`,
-              className: "btn btn-link",
-              onClick: onClick,
-              style: { fontWeight: active ? "900" : "normal" },
-            },
-            title
-          );
-        })
-      ),
+      //     return React.createElement(
+      //       "a",
+      //       {
+      //         key: title,
+      //         href: `#${title}`,
+      //         className: "btn btn-link",
+      //         onClick: onClick,
+      //         style: { fontWeight: active ? "900" : "normal" },
+      //       },
+      //       title
+      //     );
+      //   })
+      // ),
+      // React.createElement(
+      //   "section",
+      //   {
+      //     className: "navbar-center",
+      //   },
+      //   React.createElement(
+      //     "a",
+      //     {
+      //       href: "https://github.com/freewheel/dashflow",
+      //       className: "logo",
+      //       target: "_blank",
+      //     },
+      //     React.createElement("img", {
+      //       src: "/logo/dashflow-icon-32x32.png",
+      //       alt: "Dashflow",
+      //     })
+      //   )
+      // ),
       React.createElement(
-        "section",
-        {
-          className: "navbar-center",
-        },
-        React.createElement(
-          "a",
-          {
-            href: "https://github.com/freewheel/dashflow",
-            className: "logo",
-            target: "_blank",
-          },
-          React.createElement("img", {
-            src: "/logo/dashflow-icon-32x32.png",
-            alt: "Dashflow",
-          })
-        )
-      ),
-      React.createElement(
-        "section",
-        { className: "navbar-section" },
+        "div",
+        { className: "header-right" },
         React.createElement(
           "div",
           { className: `filter ${ !globalFilterValid ? 'invalid' : ''}` },
