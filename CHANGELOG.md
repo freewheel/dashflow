@@ -1,6 +1,7 @@
 # 2019-08-23
 
 - upgraded depended packages
+- added `ignore` option for watch stream
 
 # 2019-06-28
 

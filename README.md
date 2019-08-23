@@ -332,6 +332,7 @@ streamID:
   watch: 
     glob: <glob pattern>
     cwd: "working folder, default to be where dashflow.yml is located"
+    ignore: /regex pattern for files to ignore/
 # produces events in following formats
 #   stream:streamID:watch:add:<file path>
 #   stream:streamID:watch:addDir:<file path>
