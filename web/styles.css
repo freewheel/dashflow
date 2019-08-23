@@ -53,12 +53,16 @@ html, body {
 /* HEADER */
 
 .dash-header {
-  box-sizing:border-box;
-  padding: .5em;
   height: 3em;
+  width: 100%;
 }
 
-.dash-header .filter {
+.dash-header .header-right {
+  float: right;
+  height: 100%;
+}
+
+.dash-header .header-right .filter {
   outline: 0px;
   width: 300px;
   height: 6px;
@@ -67,7 +71,7 @@ html, body {
   -webkit-transition: all .6s;
 }
 
-.dash-header .filter .input {
+.dash-header .header-right .filter .input {
   border-top: 0px;
   border-right: 0px;
   border-left: 0px;
@@ -82,57 +86,57 @@ html, body {
   -webkit-transition: all .6s;
 }
 
-.dash-header .filter:focus-within {
+.dash-header .header-right .filter:focus-within {
   background: #BBB;
 }
 
-.dash-header .filter .input:focus {
+.dash-header .header-right .filter .input:focus {
   border-bottom: 2px solid #BBB;
 }
 
-.dash-header .filter.invalid {
+.dash-header .header-right .filter.invalid {
   background: #db002f;
 }
 
-.dash-header .filter.invalid .input {
+.dash-header .header-right .filter.invalid .input {
   border-bottom: 2px solid #db002f;
   color: #db002f;
 }
 
-.dash-header .filter.invalid:focus-within {
+.dash-header .header-right .filter.invalid:focus-within {
   background: #db002f;
 }
 
-.dash-header .filter.invalid .input:focus {
+.dash-header .header-right .filter.invalid .input:focus {
   border-bottom: 2px solid #db002f;
 }
 
-.dash-header .filter .input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.dash-header .header-right .filter .input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #DDD;
   opacity: 1; /* Firefox */
   -webkit-transition: all .6s;
 }
 
-.dash-header .filter .input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+.dash-header .header-right .filter .input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: #DDD;
   -webkit-transition: all .6s;
 }
 
-.dash-header .filter .input::-ms-input-placeholder { /* Microsoft Edge */
+.dash-header .header-right .filter .input::-ms-input-placeholder { /* Microsoft Edge */
   color: #DDD;
   -webkit-transition: all .6s;
 }
 
-.dash-header .filter .input:focus::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.dash-header .header-right .filter .input:focus::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #BBB;
   opacity: 1; /* Firefox */
 }
 
-.dash-header .filter .input:focus:-ms-input-placeholder { /* Internet Explorer 10-11 */
+.dash-header .header-right .filter .input:focus:-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: #BBB;
 }
 
-.dash-header .filter .input:focus::-ms-input-placeholder { /* Microsoft Edge */
+.dash-header .header-right .filter .input:focus::-ms-input-placeholder { /* Microsoft Edge */
   color: #BBB;
 }
 
