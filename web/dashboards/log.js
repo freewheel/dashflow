@@ -35,7 +35,13 @@ export function log(title, positionSpec, logFilter, gauge, limit = 500) {
               className: "tooltip tooltip-right",
               "data-tooltip": `filter: "${logFilter}"`,
             },
-            title
+            React.createElement(
+              "div",
+              {
+                className: "text"
+              },
+              title
+            )
           ),
           pill: gaugeText,
           style: Utils.positionSpecToStyle(positionSpec),
