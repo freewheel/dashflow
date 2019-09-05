@@ -9,18 +9,18 @@ streams:
 dashboards:
   all-in-one:
     - log:
-        position: 0 0 50% 50%
+        position: quadrant/top-left
         title: VIM
         filter: stream:vim:.*
     - log:
-        position: 50% 0 100% 50%
+        position: quadrant/top-right
         title: Python
         filter: stream:python:.*
     - log:
-        position: 0 50% 50% 100%
+        position: quadrant/bottom-left
         title: IRB
         filter: stream:irb:.*
     - log:
-        position: 50% 50% 100% 100%
+        position: quadrant/bottom-right
         title: IEX
         filter: stream:iex:.*
