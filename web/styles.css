@@ -31,6 +31,14 @@ html, body {
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('SourceCodePro Light'), local('SourceCodePro-Light'), url(lib/SourceCodePro-Light.ttf) format('ttf');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -55,32 +63,36 @@ html, body {
 .dash-header {
   height: 3em;
   width: 100%;
+  display: flex;
+}
+
+.dash-header .header-left {
+  width: 50%;
+  height: 100%;
 }
 
 .dash-header .header-right {
-  float: right;
+  width: 50%;
   height: 100%;
 }
 
 .dash-header .header-right .filter {
+  float:right;
   outline: 0px;
   width: 300px;
   height: 6px;
   background: #DDD;
-  margin-top: 26px;
+  margin: 34px 20px 0 0;
   -webkit-transition: all .6s;
 }
 
 .dash-header .header-right .filter .input {
-  border-top: 0px;
-  border-right: 0px;
-  border-left: 0px;
-  border-bottom: 2px solid #DDD;
+  border: 0px;
   outline: none;
-  width: 296px;
+  width: 280px;
   background: #FFF;
   margin-left: 2px;
-  margin-top: -28px;
+  margin-top: -17px;
   padding: 4px 8px;
   position: absolute;
   -webkit-transition: all .6s;
@@ -90,25 +102,12 @@ html, body {
   background: #BBB;
 }
 
-.dash-header .header-right .filter .input:focus {
-  border-bottom: 2px solid #BBB;
-}
-
 .dash-header .header-right .filter.invalid {
   background: #db002f;
 }
 
-.dash-header .header-right .filter.invalid .input {
-  border-bottom: 2px solid #db002f;
-  color: #db002f;
-}
-
 .dash-header .header-right .filter.invalid:focus-within {
   background: #db002f;
-}
-
-.dash-header .header-right .filter.invalid .input:focus {
-  border-bottom: 2px solid #db002f;
 }
 
 .dash-header .header-right .filter .input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -139,7 +138,6 @@ html, body {
 .dash-header .header-right .filter .input:focus::-ms-input-placeholder { /* Microsoft Edge */
   color: #BBB;
 }
-
 
 /* DASHBOARD */
 
@@ -235,5 +233,9 @@ html, body {
   background: #0000000D;
   color: #222;
   overflow: hidden;
-  font-family: "Inconsolata", "Lucida Console", Monaco, monospace;
+}
+
+.dash-panel .content textarea {
+  font-size: 14px;
+  font-family: 'Inconsolata', 'Lucida Console', Monaco, monospace;
 }
