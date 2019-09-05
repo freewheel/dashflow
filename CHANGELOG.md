@@ -1,3 +1,9 @@
+# 2019-08-23
+
+- supported alias for dashboard widget position
+- upgraded depended packages
+- added `ignore` option for watch stream
+
 # 2019-06-28
 
 - added node 12 support
