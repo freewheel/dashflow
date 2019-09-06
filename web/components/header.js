@@ -9,50 +9,61 @@ export const Header = ({
   updateGlobalFilter,
 }) => {
   return React.createElement(
-    "header",
-    {
-      className: "dash-header",
-    },
+    "header", { className: "dash-header", },
     [
       React.createElement(
-        "section",
-        { className: "header-left" },
-        dashboards.map(({ title }) => {
-          const active = title === currentDashboardTitle;
-          const onClick = event => {
-            updateCurrentDashboardTitle(title);
-
-            event.preventDefault();
-          };
-
-          return React.createElement(
-            "a",
+        "section", { className: "header-left" },
+        [
+          React.createElement(
+            "img",
             {
-              key: title,
-              href: `#${title}`,
-              className: "btn btn-link",
-              onClick: onClick,
-              style: { fontWeight: active ? "900" : "normal" },
-            },
-            title
-          );
-        })
+              className: "logo",
+              src: "../logo/dashflow-nav.png"
+            }
+          ),
+            React.createElement(
+              "div", { className: "dropdown" },
+              [
+                React.createElement("div", { className: "active-item item" }, currentDashboardTitle),
+                React.createElement("ul", { className: "inactive-items" },
+                  dashboards.map(({ title }) => {
+                    if (title === currentDashboardTitle) return;
+                    return React.createElement(
+                      "li",
+                      {
+                        className: "item",
+                        key: title,
+                        href: `#${title}`,
+                        onClick: event => {
+                          updateCurrentDashboardTitle(title);
+                          event.preventDefault();
+                        },
+                      },
+                      title
+                    );
+                  })
+                )
+              ]
+            )
+        ]
+        
       ),
       React.createElement(
-        "div",
-        { className: "header-right" },
+        "div", { className: "header-right" },
         React.createElement(
-          "div",
-          { className: `filter ${ !globalFilterValid ? 'invalid' : ''}` },
-          React.createElement("input", {
-            className: 'input',
-            type: "text",
-            value: globalFilterValue,
-            onChange: event => {
-              updateGlobalFilter(event.target.value);
-            },
-            placeholder: "REGEX FILTER",
-          })
+          "div", { className: `filter ${ !globalFilterValid ? 'invalid' : ''}` },
+          React.createElement(
+            "input",
+            {
+              className: 'input',
+              type: "text",
+              value: globalFilterValue,
+              onChange: event => {
+                updateGlobalFilter(event.target.value);
+              },
+              placeholder: "REGEX FILTER",
+            }
+          )
         )
       ),
     ]
