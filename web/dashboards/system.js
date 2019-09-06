@@ -11,7 +11,13 @@ const Events = ({ events, globalFilterValue, globalFilterValid }) => {
     .map(evt => `${evt.t} ${Utils.trimLineBreaks(Utils.stripAnsi(evt.e))}`);
 
   return React.createElement(Components.Panel, {
-    title: "Events",
+    title: React.createElement(
+      "div",
+      {
+        className: "text"
+      },
+      "Events"
+    ),
     pill: React.createElement(
       "span",
       {
@@ -40,7 +46,13 @@ const DashboardsConfig = ({ dashboardsYAML, updateDashboardsYAML }) =>
         className: "tooltip tooltip-right",
         "data-tooltip": "editable, change will be applied",
       },
-      "Dashboards Config"
+      React.createElement(
+        "div",
+        {
+          className: "text"
+        },
+        "Dashboards Config"
+      ),
     ),
     style: {
       top: "50%",

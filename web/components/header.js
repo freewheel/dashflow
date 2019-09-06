@@ -8,69 +8,68 @@ export const Header = ({
   globalFilterValid,
   updateGlobalFilter,
 }) => {
-  return React.createElement(
-    "header",
-    {
-      className: "navbar dash-header",
-    },
+  return React.createElement("header", { className: "dash-header", },
     [
-      React.createElement(
-        "section",
-        { className: "navbar-section" },
-        dashboards.map(({ title }) => {
-          const active = title === currentDashboardTitle;
-          const onClick = event => {
-            updateCurrentDashboardTitle(title);
-
-            event.preventDefault();
-          };
-
-          return React.createElement(
-            "a",
+      React.createElement("section", { className: "header-left" },
+        [
+          React.createElement("a",
             {
-              key: title,
-              href: `#${title}`,
-              className: "btn btn-link",
-              onClick: onClick,
-              style: { fontWeight: active ? "900" : "normal" },
+              href: "https://github.com/freewheel/dashflow",
+              target: "_blank"
             },
-            title
-          );
-        })
+            React.createElement("img",
+              {
+                className: "logo",
+                src: "../logo/dashflow-nav.png"
+              }
+            )
+          ),
+            React.createElement("div", { className: "dropdown" },
+              [
+                React.createElement("div", { className: "active-item item" }, 
+                  [
+                    React.createElement("span", { className: "text" }, currentDashboardTitle),
+                    React.createElement("div", { className: "arrow down" })
+                  ]
+                ),
+                React.createElement("ul", { className: "inactive-items" },
+                  dashboards.map(({ title }) => {
+                    const inactive = (title === currentDashboardTitle) ? 'inactive' : '';
+                    return React.createElement(
+                      "li",
+                      {
+                        className: `item ${ inactive }`,
+                        key: title,
+                        onClick: event => {
+                          updateCurrentDashboardTitle(title);
+                          event.preventDefault();
+                        },
+                      },
+                      title
+                    );
+                  })
+                )
+              ]
+            )
+        ]
+        
       ),
-      React.createElement(
-        "section",
-        {
-          className: "navbar-center",
-        },
-        React.createElement(
-          "a",
+      React.createElement("div", { className: "header-right" },
+        React.createElement("div",
           {
-            href: "https://github.com/freewheel/dashflow",
-            className: "logo",
-            target: "_blank",
+            className: `filter ${ !globalFilterValid ? 'invalid' : ''}`
           },
-          React.createElement("img", {
-            src: "/logo/dashflow-icon-32x32.png",
-            alt: "Dashflow",
-          })
-        )
-      ),
-      React.createElement(
-        "section",
-        { className: "navbar-section" },
-        React.createElement(
-          "div",
-          { className: `filter ${ !globalFilterValid ? 'invalid' : ''}` },
-          React.createElement("input", {
-            className: 'input',
-            type: "text",
-            value: globalFilterValue,
-            onChange: event => {
-              updateGlobalFilter(event.target.value);
-            },
-            placeholder: "REGEX FILTER",
-          })
+          React.createElement("input",
+            {
+              className: 'input',
+              type: "text",
+              value: globalFilterValue,
+              onChange: event => {
+                updateGlobalFilter(event.target.value);
+              },
+              placeholder: "REGEX FILTER",
+            }
+          )
         )
       ),
     ]
