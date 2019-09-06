@@ -8,21 +8,17 @@ export const Header = ({
   globalFilterValid,
   updateGlobalFilter,
 }) => {
-  return React.createElement(
-    "header", { className: "dash-header", },
+  return React.createElement("header", { className: "dash-header", },
     [
-      React.createElement(
-        "section", { className: "header-left" },
+      React.createElement("section", { className: "header-left" },
         [
-          React.createElement(
-            "img",
+          React.createElement("img",
             {
               className: "logo",
               src: "../logo/dashflow-nav.png"
             }
           ),
-            React.createElement(
-              "div", { className: "dropdown" },
+            React.createElement("div", { className: "dropdown" },
               [
                 React.createElement("div", { className: "active-item item" }, 
                   [
@@ -36,7 +32,7 @@ export const Header = ({
                     return React.createElement(
                       "li",
                       {
-                        className: `item ${inactive}`,
+                        className: `item ${ inactive }`,
                         key: title,
                         onClick: event => {
                           updateCurrentDashboardTitle(title);
@@ -52,12 +48,12 @@ export const Header = ({
         ]
         
       ),
-      React.createElement(
-        "div", { className: "header-right" },
-        React.createElement(
-          "div", { className: `filter ${ !globalFilterValid ? 'invalid' : ''}` },
-          React.createElement(
-            "input",
+      React.createElement("div", { className: "header-right" },
+        React.createElement("div",
+          {
+            className: `filter ${ !globalFilterValid ? 'invalid' : ''}`
+          },
+          React.createElement("input",
             {
               className: 'input',
               type: "text",
