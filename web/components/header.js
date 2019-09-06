@@ -12,11 +12,17 @@ export const Header = ({
     [
       React.createElement("section", { className: "header-left" },
         [
-          React.createElement("img",
+          React.createElement("a",
             {
-              className: "logo",
-              src: "../logo/dashflow-nav.png"
-            }
+              href: "https://github.com/freewheel/dashflow",
+              target: "_blank"
+            },
+            React.createElement("img",
+              {
+                className: "logo",
+                src: "../logo/dashflow-nav.png"
+              }
+            )
           ),
             React.createElement("div", { className: "dropdown" },
               [
