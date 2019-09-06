@@ -24,16 +24,20 @@ export const Header = ({
             React.createElement(
               "div", { className: "dropdown" },
               [
-                React.createElement("div", { className: "active-item item" }, currentDashboardTitle),
+                React.createElement("div", { className: "active-item item" }, 
+                  [
+                    React.createElement("span", { className: "text" }, currentDashboardTitle),
+                    React.createElement("div", { className: "arrow down" })
+                  ]
+                ),
                 React.createElement("ul", { className: "inactive-items" },
                   dashboards.map(({ title }) => {
-                    if (title === currentDashboardTitle) return;
+                    const inactive = (title === currentDashboardTitle) ? 'inactive' : '';
                     return React.createElement(
                       "li",
                       {
-                        className: "item",
+                        className: `item ${inactive}`,
                         key: title,
-                        href: `#${title}`,
                         onClick: event => {
                           updateCurrentDashboardTitle(title);
                           event.preventDefault();
