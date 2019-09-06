@@ -1,3 +1,8 @@
+# 2019-09-06
+
+- removed spectre as dependency
+- redesigned header to be dropdown
+
 # 2019-08-23
 
 - supported alias for dashboard widget position
