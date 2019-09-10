@@ -362,6 +362,7 @@ div.arrow.down {
 #app.dark .dash-header .header-left .dropdown ul.inactive-items {
   background-color: #1c1c1c;
   border: 2px solid #888;
+  border-top: none;
   box-shadow: 0px 8px 8px 0px rgba(182, 128, 128, 0.2);
 }
 
