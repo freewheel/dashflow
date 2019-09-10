@@ -53,7 +53,7 @@ html, body {
 
 /* APP */
 
-.app {
+#app {
   height: 100%;
   width: 100%;
 }
@@ -331,4 +331,94 @@ div.arrow.down {
   font-size: 1em;
   font-family: 'Inconsolata', 'Lucida Console', Monaco, monospace;
   line-height: 1.3em;
+}
+
+/* DARK */
+
+#app.dark {
+  background: #1c1c1c;
+}
+
+#app.dark .dash-header .header-left .dropdown {
+  border: 2px solid #FFF0;
+}
+
+#app.dark .dash-header .header-left .dropdown:hover {
+  border-color: #444;
+}
+
+#app.dark .dash-header .header-left .dropdown:hover {
+  border-color: #888;
+}
+
+#app.dark .dash-header .header-left .dropdown .item {
+  color: #2b5fb4;
+}
+
+#app.dark div.arrow {
+  border-color: #444;
+}
+
+#app.dark .dash-header .header-left .dropdown ul.inactive-items {
+  background-color: #1c1c1c;
+  border: 2px solid #888;
+  box-shadow: 0px 8px 8px 0px rgba(182, 128, 128, 0.2);
+}
+
+#app.dark .dash-header .header-left .dropdown ul.inactive-items li.item:hover {
+  color: #3f7de0;
+  background: #000;
+}
+
+#app.dark .dash-header .header-left .dropdown ul.inactive-items li.item.inactive {
+  color: #444;
+}
+
+#app.dark .dash-header .header-left .dropdown ul.inactive-items li.item.inactive:hover {
+  background: #1c1c1c;
+}
+
+#app.dark .dash-header .header-right .filter {
+  background: #444;
+}
+
+#app.dark .dash-header .header-right .filter .input {
+  background: #1c1c1c;
+}
+
+#app.dark .dash-header .header-right .filter:focus-within {
+  background: #888;
+}
+
+#app.dark .dash-header .header-right .filter .input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #444;
+}
+
+#app.dark .dash-header .header-right .filter .input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #444;
+}
+
+#app.dark .dash-header .header-right .filter .input::-ms-input-placeholder { /* Microsoft Edge */
+  color: #444;
+}
+
+#app.dark .dash-header .header-right .filter .input:focus::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #888;
+}
+
+#app.dark .dash-header .header-right .filter .input:focus:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #888;
+}
+
+#app.dark .dash-header .header-right .filter .input:focus::-ms-input-placeholder { /* Microsoft Edge */
+  color: #888;
+}
+
+#app.dark .dash-header .header-right .filter .input:focus {
+  color: #FFF;
+}
+
+#app.dark .dash-panel .content {
+  background: #FFF3;
+  color: #FFF;
 }
